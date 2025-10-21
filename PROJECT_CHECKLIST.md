@@ -7,9 +7,9 @@
 - [*] ایجاد ریپوی Git و پوشه پروژه  
 - [*] ایجاد virtualenv و نصب Django  
 - [*] ساخت فایل requirements.txt  
-- [ ] تنظیم فایل .env و .gitignore  
-- [ ] ایجاد Dockerfile و docker-compose.yml (اختیاری)  
-- [ ] تست اجرای پروژه در Docker یا محلی  
+- [*] تنظیم فایل .env و .gitignore  
+- [*] ایجاد Dockerfile و docker-compose.yml (اختیاری)  
+- [-] تست اجرای پروژه در Docker یا محلی  
 
 ---
 
