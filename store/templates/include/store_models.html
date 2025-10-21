@@ -1,0 +1,82 @@
+<!-- product-2 -->
+<div>
+    <!-- img product -->
+    <div class=" flex items-center justify-center relative">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="">
+        {% else %}
+            <img class="w-32 sm:w-64 hover:scale-105 transition-transform" src="../../../static/image/products/p1.png"
+                 alt="">
+        {% endif %}
+        <span
+                class="absolute top-0 right-0 inline-block py-0.5 px-2.5 xs:py-1 xs:px-3.5 bg-orange-300 text-white dark:text-zinc-700 font-DanaMedium text-base rounded-[100px]">12%</span>
+    </div>
+
+    <!-- content product -->
+    <div>
+
+        <!-- introduction -->
+        <h4
+                class="font-DanaMedium text-sm sm:text-xl mt-2 md:mt-5 text-zinc-700 dark:text-white min-h-10 sm:min-h-14 line-clamp-2 transition-colors">
+            {{ product.name }}</h4>
+
+
+        <!-- wrapper price -->
+        <div class="mt-1.5 md:mt-2.5 flex items-center gap-x-2.5">
+            <div>
+                <span class="text-base sm:text-xl font-DanaDemiBold text-teal-600 inline-block">{{ product.display_info }}</span>
+            </div>
+
+            <!-- wrapper offer (اگر نیاز دارید این قسمت رو هم نمایش بدید) -->
+            {% if product.offer_info %}
+                <div class="relative">
+                    <span class="line-offer absolute top-2.5 sm:top-3 inline-block w-14 sm:w-[70px] xl:w-[112px] border border-red-500"></span>
+                    <span class="text-base sm:text-xl font-DanaRegular text-gray-400 inline-block">{{ product.offer_info }}</span>
+                    <span class="hidden xl:inline-block sm:text-sm text-gray-400 tracking-wider">تومان</span>
+                </div>
+            {% endif %}
+        </div>
+
+
+        <!-- icon & score -->
+        <div class="flex items-center justify-between mt-2.5 sm:mt-4">
+
+            <!-- right-side-icon -->
+            <div class="flex items-center gap-x-1 sm:gap-x-3  ">
+
+                                <span>
+                                    <svg
+                                            class="w-7 h-7 sm:w-[36px] sm:h-[36px] bg-gray-100 dark:bg-zinc-800 stroke-gray-400 dark:stroke-gray-400  hover:bg-teal-600 dark:hover:bg-teal-600 hover:stroke-white dark:hover:stroke-white rounded-full p-1.5">
+                                        <use class="" href="#shoping-cart"></use>
+                                    </svg>
+                                </span>
+
+                <svg class="w-4 h-4 sm:w-6 sm:h-6 hover:child:text-emerald-500 cursor-pointer">
+                    <use class="text-gray-400 " href="#arrows-right-left"></use>
+                </svg>
+
+            </div>
+
+            <!-- score -->
+            <div class="flex">
+                <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                    <use class="text-gray-300" href="#star-outline"></use>
+                </svg>
+                <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                    <use class="text-gray-300" href="#star-outline"></use>
+                </svg>
+                <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                    <use class="text-yellow-400" href="#star-outline"></use>
+                </svg>
+                <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                    <use class="text-yellow-400" href="#star-outline"></use>
+                </svg>
+                <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                    <use class="text-yellow-400" href="#star-outline"></use>
+                </svg>
+            </div>
+
+        </div>
+
+    </div>
+</div>

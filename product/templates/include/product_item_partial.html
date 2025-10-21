@@ -1,0 +1,75 @@
+{% load pool_extras %}
+
+<div class="flex items-center justify-center gap-x-3 md:gap-x-5 h-10 md:w-52 rounded-md ">
+
+            <span class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full">
+                <svg class=" dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2 rotate-180">
+                    <use class="" href="#chevron-left"></use>
+                </svg>
+            </span>
+
+    <span class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full ">
+                <svg class=" dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2">
+                    <use class="" href="#chevron-left"></use>
+                </svg>
+            </span>
+
+</div>
+
+<!-- wrapper price -->
+<div class="mt-1.5 md:mt-2.5 flex items-center gap-x-2.5">
+    <div>
+        <span class="text-base sm:text-xl font-DanaDemiBold text-teal-600 inline-block">100</span>
+    </div>
+
+    <!-- wrapper offer (اگر نیاز دارید این قسمت رو هم نمایش بدید) -->
+    {% if product.offer_info %}
+        <div class="relative">
+            <span class="line-offer absolute top-2.5 sm:top-3 inline-block w-14 sm:w-[70px] xl:w-[112px] border border-red-500"></span>
+            <span class="text-base sm:text-xl font-DanaRegular text-gray-400 inline-block">{{ product.offer_info }}</span>
+            <span class="hidden xl:inline-block sm:text-sm text-gray-400 tracking-wider">تومان</span>
+        </div>
+    {% endif %}
+</div>
+<!-- icon & score -->
+<div class="flex items-center justify-between mt-2.5 sm:mt-4">
+
+    <!-- right-side-icon w-7 h-7 sm:w-[36px] sm:h-[36px]-->
+    <div class="flex items-center gap-x-1 sm:gap-x-3 ">
+            <span>
+                <svg class="w-7 h-7 sm:w-[36px] sm:h-[36px] bg-gray-100 dark:bg-zinc-800 stroke-gray-400 dark:stroke-gray-400  hover:bg-teal-600 dark:hover:bg-teal-600 hover:stroke-white dark:hover:stroke-white rounded-full p-1.5">
+                    <use class="" href="#shoping-cart"></use>
+                </svg>
+            </span>
+
+        <span>
+                <svg class="w-4 h-4 sm:w-6 sm:h-6 hover:child:text-emerald-500 cursor-pointer">
+                    <use class="text-gray-400 " href="#arrows-right-left"></use>
+                </svg>
+            </span>
+
+
+    </div>
+
+    <!-- score -->
+    <div class="flex">
+        <svg class="w-4 h-4 sm:w-6 sm:h-6">
+            <use class="text-gray-300" href="#star-outline"></use>
+        </svg>
+        <svg class="w-4 h-4 sm:w-6 sm:h-6">
+            <use class="text-yellow-400" href="#star-outline"></use>
+        </svg>
+        <svg class="w-4 h-4 sm:w-6 sm:h-6">
+            <use class="text-yellow-400" href="#star-outline"></use>
+        </svg>
+        <svg class="w-4 h-4 sm:w-6 sm:h-6">
+            <use class="text-yellow-400" href="#star-outline"></use>
+        </svg>
+        <svg class="w-4 h-4 sm:w-6 sm:h-6">
+            <use class="text-yellow-400" href="#star-outline"></use>
+        </svg>
+    </div>
+
+</div>
+
+</div>

@@ -1,0 +1,230 @@
+<!-- header desktop -->
+<header class=" z-50 w-[97%] p-5 lg:w-[90%] h-24 mx-auto xl:p-10 py-5 hidden md:flex items-center fixed top-9 left-0 right-0 bg-black/50  rounded-3xl backdrop-blur-sm">
+    <div class="w-full flex items-center justify-between">
+
+        <!-- logo & menu -->
+        <div class="h-14 flex items-center gap-x-9">
+
+            <!-- logo img -->
+            <img src="../static/image/app-logo.png" alt="">
+            <!-- menu -->
+            <ul
+                    class="h-full flex items-center gap-x-4 lg:gap-x-9 text-xl text-gray-100 tracking-tightest child:leading-[56px] ">
+                <li><a class="text-orange-200 font-DanaMedium" href="{% url 'home' %}">صفحه اصلی</a></li>
+                <!-- has sub menu -->
+                <li class="relative group">
+                    <a class="group-hover:text-orange-300 transition-colors" href="{% url 'store_caf' %}">فروشگاه</a>
+                    <!-- sub menu -->
+                    <ul
+                            class="absolute top-100 w-52 p-6 space-y-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white border-t-[3px] border-t-orange-300 rounded-2xl text-base tracking-normal shadow-Normal transition-all child-hover:font-DanaMedium child-hover:text-orange-300 child-hover:transition-all child:">
+                        <li><a href="#">قهوه عروبیکا</a></li>
+                        <li><a href="#">قهوه روبوستا</a></li>
+                        <li><a href="#">قهوه اسپرسو</a></li>
+                        <li><a href="#">قهوه ساز</a></li>
+                        <li><a href="#">موکاپات</a></li>
+                        <li><a href="#">لوازم جانبی</a></li>
+                    </ul>
+                </li>
+{#                <li><a href="#">دیکشنری</a></li>#}
+                <li><a href="{% url 'about' %}">بلاگ</a></li>
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="{% url 'contact_modules' %}">تماس با ما</a></li>
+                {% if request.user.is_superuser %}
+                	<li><a href="/admin">ادمین</a></li>
+                {% endif %} 
+                
+            </ul>
+
+        </div>
+
+        <!-- cart & theme & logn in -->
+        <div class="flex items-center md:gap-x-5 xl:gap-x-10 text-orange-200 stroke-orange-200">
+
+{#            <div class="">#}
+{#                <a href="/admin">#}
+{#                    <svg class="w-8 h-8 ">#}
+{#                        <use href="#shopping"></use>#}
+{#                    </svg>#}
+{#                </a>#}
+{#            </div>#}
+            <!-- icon-moon-cart -->
+            <div class="flex items-center md:gap-x-5 ">
+
+                <!-- cart icon wrapper -->
+                <div class="py-3 relative group cursor-pointer">
+                    <a href="{% url 'shop_cofe' %}">
+                        <svg class="w-8 h-8 ">
+                            <use href="#shoping-cart"></use>
+                        </svg>
+                    </a>
+
+
+                    <!-- box cart shopping -->
+                    <div class="absolute top-100 left-0 top-14 w-[400px] max-h-[502px] overflow-auto p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white border-t-[3px] border-t-orange-300 rounded-2xl tracking-normal shadow-Normal transition-all">
+
+                        <!-- top box -->
+                        <div class="flex items-center justify-between">
+                            <span class="font-DanaMedium text-gray-300 text-sm tracking-tighter">3 مورد</span>
+                            <a href="{% url 'shop_cofe' %}" class="flex items-center">
+                                <span class="text-orange-300 font-DanaMedium text-xs tracking-tighter">مشاهده سبد خرید</span>
+                                <svg class="w-5 h-5 stroke-none fill-orange-300 ">
+                                    <use href="#chevron-left"></use>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- img product & title -->
+                        <div class="border-b border-b-gray-300 dark:border-b-white/20 divide-y-2 divide-gray-100 dark:divide-white/20 mb-5">
+
+                            <div class="flex items-center justify-between ">
+                                <div>
+                                    <img src="../static/image/products/p2.png" class="w-40">
+                                </div>
+                                <div class="max-w-64 my-6 font-DanaMedium ">
+                                    <h5 class="text-zinc-700 dark:text-white text-lg mb-6 line-clamp-2">قهوه اسپرسو
+                                        بن مانو مدل پریسکا 250 گرمی</h5>
+                                    <span class="text-teal-600 text-sm tracking-tighter">14,500 تومان تخفیف</span>
+                                    <div>
+                                            <span
+                                                    class="font-DanaDemiBold text-xl text-zinc-700 dark:text-white ">175,000</span>
+                                        <span class="text-sm font-DanaRegular">تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between ">
+                                <div>
+                                    <img src="../static/image/products/p1.png" class="w-40">
+                                </div>
+                                <div class="max-w-64 my-6 font-DanaMedium ">
+                                    <h5 class="text-zinc-700 dark:text-white text-lg mb-6 line-clamp-2">قهوه اسپرسو
+                                        بن مانو مدل پریسکا 250 گرمی</h5>
+                                    <span class="text-teal-600 text-sm tracking-tighter">14,500 تومان تخفیف</span>
+                                    <div>
+                                            <span
+                                                    class="font-DanaDemiBold text-xl text-zinc-700 dark:text-white ">175,000</span>
+                                        <span class="text-sm font-DanaRegular">تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between ">
+                                <div>
+                                    <img src="../static/image/products/p1.png" class="w-40">
+                                </div>
+                                <div class="max-w-64 my-6 font-DanaMedium ">
+                                    <h5 class="text-zinc-700 dark:text-white text-lg mb-6 line-clamp-2">قهوه اسپرسو
+                                        بن مانو مدل پریسکا 250 گرمی</h5>
+                                    <span class="text-teal-600 text-sm tracking-tighter">14,500 تومان تخفیف</span>
+                                    <div>
+                                            <span
+                                                    class="font-DanaDemiBold text-xl text-zinc-700 dark:text-white ">175,000</span>
+                                        <span class="text-sm font-DanaRegular">تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- price & buy wrapper -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                    <span class="text-sm text-gray-300 font-DanaMedium tracking-tighter">مبلغ قابل
+                                        پرداخت</span>
+                                <div>
+                                        <span
+                                                class="text-xl font-DanaDemiBold text-zinc-700 dark:text-white">350,000</span>
+                                    <span class="text-sm text-zinc-700 dark:text-gray-300">تومان</span>
+                                </div>
+                            </div>
+                            <!-- button submit buy -->
+                            <div>
+
+                                <button type="submit"
+                                        class="w-36 h-14 bg-emerald-500 hover:bg-teal-700 rounded-xl text-white text-lg transition-colors">
+                                    ثبت
+                                    سفارش
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- empty cart -->
+                    <!-- main box -->
+                    <div
+                            class="hidden absolute top-100 left-0 top-14 w-[400px] p-5 py-12 opacity-0 invisible group-hover:opacity-100 group-hover:visible bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white border-t-[3px] border-t-orange-300 rounded-2xl tracking-normal shadow-Normal transition-all">
+
+                        <!-- box content -->
+                        <div class="flex flex-col items-center justify-center">
+
+                            <!-- icon and span -->
+                            <div class="flex flex-col items-center justify-center">
+
+                                <svg class="w-14 h-14 stroke-gray-400 mb-3">
+                                    <use href="#shoping-cart"></use>
+                                </svg>
+                                <span class="font-DanaMedium text-zinc-700 dark:text-white">هنوز محصولی به سبد خرید
+                                        اضافه نشده</span>
+
+                            </div>
+
+                            <!-- button buy -->
+                            <a href="#"
+                               class="w-64 h-14 bg-teal-600 px-11 py-3 rounded-xl flex items-center justify-center mt-11 text-white text-xl font-DanaRegular">
+                                <span class="w-full tracking-tightest text-center">مشاهده سبد فروشگاه</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- admin icon -->
+
+                <!-- moon & sun icon -->
+                <div class="cursor-pointer toggle-theme">
+
+                    <svg class="w-8 h-8 inline-block dark:hidden">
+                        <use href="#moon"></use>
+                    </svg>
+
+                    <svg class="w-8 h-8 hidden dark:inline-block">
+                        <use href="#sun"></use>
+                    </svg>
+
+                </div>
+
+            </div>
+
+
+            <!-- divid -->
+            <span class="w-px h-14 bg-white/20"></span>
+            <!-- logn in & sign in -->
+            <div>
+                <div class="flex items-center justify-center gap-x-2.5 tracking-tightest"
+                     href="pages/loginPage.html">
+                    <svg class="w-8 h-8">
+                        <use href="#arow-left-rectangle"></use>
+                    </svg>
+                    {% if user.is_active %}
+                        <a href="{% url 'logout_page' %}" class="text-xl h-8 hidden xl:inline-block">خروج</a>
+                    {% else %}
+                        <a href="{% url 'login_page' %}" class="text-xl h-8 hidden xl:inline-block">ورود</a>
+                        <span class="hidden xl:inline-block">|</span>
+                        <a href="{% url 'register_page' %}" class="text-xl h-8 hidden xl:inline-block">ثبت نام</a>
+                    {% endif %}
+
+                    <!-- user account -->
+                    <a class="hidden flex items-center justify-center gap-x-2" href="#">
+                        <svg class="w-7 h-7">
+                            <use href="#usericon"></use>
+                        </svg>
+                        <span class="text-lg">ساحر عباسی</span>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</header>

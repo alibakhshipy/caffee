@@ -1,0 +1,96 @@
+{% extends 'login/_master_log.html' %}
+{% block title %}
+    <title>صفحه ورود</title>
+{% endblock %}
+{% block content %}
+    <svg class="hidden">
+        <symbol id="eye-slash" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"/>
+        </symbol>
+
+        <symbol id="eye" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+        </symbol>
+
+    </svg>
+
+    <div class="container flex items-center justify-center">
+
+        <!-- img-body -->
+        <img class="absolute max-w-[1430px] -z-10" src="../../../static/image/login/coffeebeans1.png " alt="">
+
+        <!-- login-form -->
+        <div class="login-form max-w-[900px] p-4 bg-white/30 rounded-2xl flex flex-col-reverse sm:flex-row items-center justify-between gap-5 sm:gap-10 shadow-Normal">
+
+            <!-- right-section-inputs -->
+            <div class="form-input h-full flex flex-col justify-start basis-[58%] ">
+
+                <!-- title tablet & decktop -->
+                <h1 class="hidden sm:inline font-MorabbaMedium text-center text-3xl text-white">صفحه ورود</h1>
+
+                <!-- form-input -->
+
+
+                <form method="post" action="{% url 'login_page' %}">
+                    {% csrf_token %}
+                    {#                         {{ form }}#}
+                    {#                         {{ form.errors }}#}
+
+                    <span class="inline-block md:text-lg text-white mr-3 mb-1 mt-3">ایمیل</span>
+                    {{ login_form.email.label_tag }}
+                    {{ login_form.email }}
+
+
+                    <div class="relative">
+                        <span class="inline-block text-lg text-white mr-3 mb-1 mt-3">رمز عبور</span>
+                        {{ login_form.password.label_tag }}
+                        {{ login_form.password }}
+                        <div class="text-red-400 mt-4 font-DanaDemiBold ">
+                            {{ login_form.password.errors }}
+                            {{ login_form.email.errors }}
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <a href="{% url 'forget_page' %}"
+                           class="text-orange-300 hover:text-orange-400 font-bold">
+                            فراموشی رمز عبور
+                        </a>
+                    </div>
+
+
+                    <div class="flex items-center gap-4">
+
+                        <button class="px-8 xs:px-32 sm:px-16 lg:px-32 py-2 mt-3 text-white sm:text-lg bg-gradient-to-r from-orange-200 to-orange-300 rounded-full"
+                                type="submit">ورود
+                        </button>
+                        <a
+                                class="px-6 md:px-8 py-2 mt-3 sm:text-lg text-white bg-gradient-to-r from-orange-300 to-orange-200 rounded-full"
+                                href="{% url 'register_page' %}">ثبت نام</a>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+            <!-- left-section-img -->
+            <div class="image shrink-0 h-[95%] rounded-xl sm:basis-[42%] flex items-center justify-center overflow-hidden">
+                <img class="w-[360px] rounded-2xl bg-transparent"
+                     src="../../../static/image/login/pexels-photo-312418 1.jpg" alt="">
+            </div>
+
+            <!-- title mobile -->
+            <h1 class="sm:hidden font-MorabbaMedium text-center text-3xl text-white">صفحه ثبت نام</h1>
+
+        </div>
+
+    </div>
+
+{% endblock %}
