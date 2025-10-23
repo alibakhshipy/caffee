@@ -18,3 +18,7 @@ class StoreListView(ListView):
     context_object_name = 'products'
     # paginate_by = 1   جهت تعداد محصولاتی که در صفحه نمایش داده شود
 
+class ArobicaView(ListView):
+    template_name = 'store/arobica.html'
+    model = Product
+    context_object_name = 'arobica'

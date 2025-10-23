@@ -2,8 +2,19 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
+class FooterLinkBox3(models.Model):
+    title = models.CharField(max_length=50, verbose_name='عنوان')
+    
+    class Meta:
+        verbose_name = 'دسته بندی محصول'
+        verbose_name_plural =  'دسته بندی های محصول'
+        
+    def __str__(self):
+        return self.title
+        
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='نام محصول')
+    FooterLinkBox3 = models.ForeignKey(to=FooterLinkBox3, on_delete=models.CASCADE, null= True, verbose_name='دسته بندی')
     price = models.IntegerField(verbose_name='قیمت')
     price2 = models.IntegerField(verbose_name='قیمت بدون تخفیف', blank=True, null=True)
     is_available = models.BooleanField(default=False)

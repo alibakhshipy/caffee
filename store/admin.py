@@ -6,4 +6,4 @@ from . import models
     # # list_editable = ['title', 'price','is_active']
     # list_display = ['title', 'price', 'is_active', 'is_delete']
 admin.site.register(models.Product)
-
+admin.site.register(models.FooterLinkBox3)
