@@ -21,19 +21,20 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - DEBUG=False
+      - DJANGO_SETTINGS_MODULE=cafee_new.settings
     depends_on:
       - redis
     command: >
       bash -c "
         python manage.py migrate &&
         python manage.py collectstatic --noinput &&
-        gunicorn djangoProject.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 90
+        gunicorn cafee_new.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 90
       "
   
 
   worker:
     build: .
-    command: celery -A djangoProject worker --loglevel=info
+    command: celery -A cafee_new worker --loglevel=info
     volumes:
       - .:/app
     depends_on:

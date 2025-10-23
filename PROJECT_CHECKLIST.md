@@ -14,10 +14,10 @@
 ---
 
 ## 🔹 فاز 2 – ساختاردهی پروژه
-- [ ] ایجاد پروژه با django-admin startproject  
-- [ ] ساخت فولدر apps و جداسازی تنظیمات (settings/base.py, settings/dev.py, settings/prod.py)  
-- [ ] تنظیم مسیرهای STATIC و MEDIA در settings  
-- [ ] ساخت App اصلی و ثبت در INSTALLED_APPS  
+- [*] ایجاد پروژه با django-admin startproject  
+- [-] ساخت فولدر apps و جداسازی تنظیمات (settings/base.py, settings/dev.py, settings/prod.py)  
+- [*] تنظیم مسیرهای STATIC و MEDIA در settings  
+- [*] ساخت App اصلی و ثبت در INSTALLED_APPS  
 
 ---
 
