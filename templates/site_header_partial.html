@@ -22,17 +22,13 @@
                     <ul
                         class="absolute top-full right-0 w-52 p-4 space-y-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white border-t-4 border-t-orange-300 rounded-2xl text-base tracking-normal shadow-lg transition-all duration-300 z-50"
                     >
-                        <li><a href="#">قهوه عربیکا</a></li>
-                        <li><a href="#">قهوه روبوستا</a></li>
-                        <li><a href="#">قهوه ترک</a></li>
+                        <li><a href="{% url 'arabica' %}" class="hover:text-orange-300 transition-colors">قهوه عربیکا</a></li>
+                        <li><a href="{% url 'robusta' %}" class="hover:text-orange-300 transition-colors">قهوه روبوستا</a></li>
+                        <li><a href="{% url 'tork' %}" class="hover:text-orange-300 transition-colors">قهوه ترک</a></li>
 
                         <!-- گزینه تجهیزات قهوه -->
                         <li class="relative hover-trigger">
-                            <a
-                                href="#"
-                                class="flex justify-between items-center hover:text-orange-300 transition-colors"
-                            >
-                                تجهیزات قهوه
+                            <a href="equipment" class="flex justify-between items-center hover:text-orange-300 transition-colors">تجهیزات قهوه
                                 <span class="text-orange-300">▸</span>
                             </a>
 
@@ -50,8 +46,8 @@
                             </ul>
                         </li>
 
-                        <li><a href="#">قهوه‌ساز</a></li>
-                        <li><a href="#">لوازم جانبی</a></li>
+                        <li><a href="{% url 'maker' %}" class="hover:text-orange-300 transition-colors">قهوه‌ساز</a></li>
+                        <li><a href="{% url 'accessories' %}" class="hover:text-orange-300 transition-colors">لوازم جانبی</a></li>
                     </ul>
                 </li>
 
