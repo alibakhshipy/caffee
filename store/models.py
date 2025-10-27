@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 class FooterLinkBox3(models.Model):
     title = models.CharField(max_length=50, verbose_name='عنوان')
-    slug = models.SlugField(unique=True, allow_unicode=True)
+    slug = models.SlugField(unique=True, allow_unicode=True, null=True, blank=True, verbose_name='URL')
     class Meta:
         verbose_name = 'دسته بندی محصول'
         verbose_name_plural =  'دسته بندی های محصول'
