@@ -1,0 +1,52 @@
+{% extends '_layout.html' %}
+{% block content %}
+        <section>
+
+        <!-- background section products -->
+        <div class="products-img flex">
+
+        <!-- header section -->
+        <div class="container mt-8 md:mt-48">
+
+            <!-- title header section -->
+            <div class="flex justify-between items-end">
+
+                <!-- right-side-header-section -->
+                <div>
+                    <h4 class="products-title">قمقمه</h4>
+                    <span class="products-sub-title">نگهداری داغ یا سرد، بدون تغییر در طعم</span>
+                </div>
+
+                <!-- left-side-header-section -->
+                <div
+                    class="flex items-center justify-center  md:gap-x-1 hover:bg-orange-200/20 h-10  md:w-52 rounded-md">
+                    <a class="link-head-products" href="#">مشاهده همه محصولات</a>
+
+                    <a class="link-head-products-mobile" href="#">مشاهده همه</a>
+
+                    <svg class="w-5 h-5 fill-orange-300">
+                        <use class="" href="#chevron-left"></use>
+                    </svg>
+                </div>
+
+            </div>
+
+            <!-- products-box-->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal  child:transition-colors">
+
+
+              {% for product in flask %}
+              	    {% include 'include/store_models.html' with product=product %}
+              {% endfor %}
+
+
+
+            </div>
+
+        </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

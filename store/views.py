@@ -16,8 +16,8 @@ class StoreListView(ListView):
     template_name = 'store/store.html'
     model = Product
     context_object_name = 'products'
-    # paginate_by = 1   جهت تعداد محصولاتی که در صفحه نمایش داده شود
-
+    
+# menu shoping
 class ArabicaListView(ListView):
     template_name = 'store/arabica.html'
     model = Product
@@ -94,3 +94,33 @@ class AccessoriesListView(ListView):
             is_active = True,
             is_delete = True
         )          
+
+# menu Equipments
+
+class CaffeeGrinderListView(ListView):
+    template_name = 'store/equipment/caffee-grinder.html'
+    model = Product
+    context_object_name = 'grinder'
+    paginate_by = 8
+    
+    
+    def get_queryset(self):
+        return Product.objects.filter(
+            FooterLinkBox3__slug = 'grinder',
+            is_active = True,
+            is_delete = True
+        )
+        
+class CaffeeBankListView(ListView):
+    template_name = 'store/equipment/caffee-bank.html'
+    model = Product
+    context_object_name = 'bank'
+    paginate_by = 8
+    
+    
+    def get_queryset(self):
+        return Product.objects.filter(
+            FooterLinkBox3__slug = 'bank',
+            is_active = True,
+            is_delete = True
+        )        
