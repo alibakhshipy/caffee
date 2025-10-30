@@ -64,3 +64,7 @@ django-redis
 django-celery-beat
 
 gunicorn
+
+# install None docker-compose-stage
+Tailwind
+django-tailwind

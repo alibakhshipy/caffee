@@ -46,11 +46,15 @@ INSTALLED_APPS = [
     'store',
     'pools',
     'site_module',
+    'about_caffee',
     'django_render_partial',
-
+    'tailwind',
+    'theme',
+    
 
 ]
-
+TAILWIND_APP_NAME = "theme"
+NPM_BIN_PATH = r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

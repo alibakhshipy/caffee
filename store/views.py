@@ -124,3 +124,48 @@ class CaffeeBankListView(ListView):
             is_active = True,
             is_delete = True
         )        
+
+class TravelMugListView(ListView):
+    template_name = 'store/equipment/travel-mug.html'
+    model = Product
+    context_object_name = 'travel_mug'
+    paginate_by = 8
+    
+    def get_queryset(self):
+        return Product.objects.filter(
+            FooterLinkBox3__slug = 'travel_mug' 
+        )
+
+class FilterListView(ListView):
+    template_name = 'store/equipment/filter.html'
+    model = Product
+    context_object_name = 'filter'
+    paginate_by = 8
+    
+    def get_queryset(self):
+        return Product.objects.filter(
+            FooterLinkBox3__slug = 'filter' 
+        )
+
+class FlaskListView(ListView):
+    template_name = 'store/equipment/flask.html'
+    model = Product
+    context_object_name = 'flask'
+    paginate_by = 8
+    
+    def get_queryset(self):
+        return Product.objects.filter(
+            FooterLinkBox3__slug = 'flask' 
+        )    
+                
+
+class ShakerListView(ListView):
+    template_name = 'store/equipment/shaker.html'
+    model = Product
+    context_object_name = 'shaker'
+    paginate_by = 8
+    
+    def get_queryset(self):
+        return Product.objects.filter(
+            FooterLinkBox3__slug = 'shaker' 
+        )          
