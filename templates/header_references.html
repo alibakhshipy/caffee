@@ -1,5 +1,6 @@
-<link rel="stylesheet" href="../static/css/style.css">
-    <link rel="icon" href="../static/image/fav-icon.png">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'image/fav-icon.png' %}">
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')

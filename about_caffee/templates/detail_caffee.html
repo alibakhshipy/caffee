@@ -1,20 +1,44 @@
-{% extends 'about_cafe/_about.html' %} {% block content %}
-<section class="container mx-auto mt-10 md:mt-40 px-4">
-    <div class="bg-white dark:bg-zinc-800 rounded-3xl shadow-lg p-6 md:p-10">
-        <h1 class="text-3xl md:text-4xl font-bold text-orange-400 mb-6">123</h1>
+{% extends '_layout.html' %} {% load thumbnail %} {% block title %}{{ post.title }}{% endblock title %} {% block content %}
+<section class="products-img flex">
+    <!-- header section -->
+    <div class="container mt-8 md:mt-48">
+        <!-- title header section مشابه لیست بلاگ -->
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h4 class="products-title">آکادمی قهوه ریس</h4>
+                <span class="products-sub-title">بلاگ های کافی</span>
+            </div>
 
-        {% if post.image %}
-        <img
-            src="{{ post.image.url }}"
-            alt="{{ post.title }}"
-            class="rounded-2xl mb-6 mx-auto w-full sm:w-3/4 md:w-2/3 lg:w-1/2 max-h-80 object-cover shadow-md"
-        />
-        {% endif %}
+            <div class="flex items-center justify-center md:gap-x-1 hover:bg-orange-200/20 h-10 md:w-52 rounded-md">
+                <a class="link-head-products" href="{% url 'blog:blog_list' %}">مشاهده همه بلاگ ها</a>
+                <a class="link-head-products-mobile" href="{% url 'blog:blog_list' %}">مشاهده همه</a>
+                <svg class="w-5 h-5 fill-orange-300">
+                    <use href="#chevron-left"></use>
+                </svg>
+            </div>
+        </div>
+        {% comment %} <--بلاگ محتوا--!> {% endcomment %}
+        <div class="bg-white dark:bg-zinc-800 rounded-3xl shadow-Normal p-6 md:p-10 transition-colors">
+            <h1 class="text-3xl md:text-4xl font-bold text-orange-400 mb-6">{{ post.title }}</h1>
 
-        <div class="prose dark:prose-invert max-w-none leading-relaxed">{{ post.content|safe }}</div>
+            {% if post.image %} {% thumbnail post.image "600x400" crop="center" as im %}
+            <img
+                src="{{ im.url }}"
+                width="{{ im.width }}"
+                height="{{ im.height }}"
+                alt="{{ post.title }}"
+                class="rounded-2xl mx-auto mb-6 shadow-md"
+            />
+            {% endthumbnail %} {% endif %}
 
-        <div class="mt-10">
-            <a href="{% url 'blog:blog_list' %}" class="text-orange-400 hover:underline">← بازگشت به لیست بلاگ‌ها</a>
+            <!-- محتوای پست با استایل تمیز و پشتیبانی از تم تیره -->
+            <div class="prose dark:prose-invert max-w-none leading-relaxed">{{ post.content|safe }}</div>
+
+            <div class="mt-10">
+                <a href="{% url 'blog:blog_list' %}" class="text-orange-400 hover:underline">
+                    ← بازگشت به لیست بلاگ‌ها
+                </a>
+            </div>
         </div>
     </div>
 </section>

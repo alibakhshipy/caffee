@@ -52,7 +52,7 @@ flake8
 pytest
 pytest-django
 djoser
-
+sorl-thumbnail
 Faker
 gh
 locust
