@@ -1,13 +1,12 @@
 {% extends '_layout.html' %}
 
-
 {% block title %}صفحه بلاگ{% endblock title %}
 
 {% block content %}
-    <section>
+<section>
 
-        <!-- background section products -->
-        <div class="products-img flex">
+    <!-- background section -->
+    <div class="products-img flex">
 
         <!-- header section -->
         <div class="container mt-8 md:mt-48">
@@ -22,35 +21,39 @@
                 </div>
 
                 <!-- left-side-header-section -->
-                <div
-                    class="flex items-center justify-center  md:gap-x-1 hover:bg-orange-200/20 h-10  md:w-52 rounded-md">
-                    <a class="link-head-products" href="#">مشاهده همه بلاگ ها</a>
-
-                    <a class="link-head-products-mobile" href="#">مشاهده همه</a>
-
+                <div class="flex items-center justify-center md:gap-x-1 hover:bg-orange-200/20 h-10 md:w-52 rounded-md">
+                    <a class="link-head-products" href="{% url 'blog:blog_list' %}">مشاهده همه بلاگ ها</a>
+                    <a class="link-head-products-mobile" href="{% url 'blog:blog_list' %}">مشاهده همه</a>
                     <svg class="w-5 h-5 fill-orange-300">
-                        <use class="" href="#chevron-left"></use>
+                        <use href="#chevron-left"></use>
                     </svg>
                 </div>
 
             </div>
 
-            <!-- products-box-->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal  child:transition-colors">
+            <!-- posts grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal child:transition-colors">
 
-
-              {% for product in accessories %}
-              	    {% include 'include/store_models.html' with product=product %}
-              {% endfor %}
-
-
+                {% for post in posts %}
+                <div class="group">
+                    <a href="{% url 'blog:blog_detail' slug=post.slug %}" class="block">
+                        {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-40 object-cover rounded-xl mb-2">
+                        {% endif %}
+                        <h5 class="font-semibold text-lg group-hover:text-orange-400 transition-colors">{{ post.title }}</h5>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ post.short_description|truncatewords:20 }}</p>
+                    </a>
+                </div>
+                {% empty %}
+                    <p>هیچ مطلبی هنوز منتشر نشده است.</p>
+                {% endfor %}
 
             </div>
 
         </div>
+    </div>
 
-        </div>
-
-    </section>
+</section>
 {% endblock content %}
+
      
