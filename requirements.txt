@@ -68,3 +68,9 @@ gunicorn
 # install None docker-compose-stage
 Tailwind
 django-tailwind
+
+
+# install node.js and tailwind
+npm init -y
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
