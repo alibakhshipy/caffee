@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'pools',
     'site_module',
     'about_caffee',
+    'order_module',
     'django_render_partial',
     'sorl.thumbnail',
     'tailwind',
+    'widget_tweaks',
     'theme',
     
 

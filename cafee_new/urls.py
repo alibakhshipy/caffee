@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('product.urls')),
     # path('register/', include('account_module.urls')),
     path('shop/', include('shop.urls')),
+    path('detail/', include('order_module.urls')),
     path('contact/', include('contact_module.urls')),
     path('store/', include('store.urls')),
     path('blog/', include('about_caffee.urls')),

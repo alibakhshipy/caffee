@@ -93,7 +93,7 @@
 
             <!-- product-2 -->
             {% for product in featured_products %}
-
+              <a href="{% url 'product_detail' product.slug %}">
               <div>
                 <!-- img product -->
                 <div class=" flex items-center justify-center">
@@ -178,7 +178,7 @@
 
                 </div>
               </div>
-
+              </a>
             {% endfor %}
 
           </div>
