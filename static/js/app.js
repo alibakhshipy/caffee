@@ -12,14 +12,3 @@ toggleThemeBtns.forEach(btn => {
     )
 })
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    const priceBox = document.getElementById("product-price");
-
-    document.querySelectorAll(".variant-item").forEach(item => {
-        item.addEventListener("click", () => {
-            const price = item.dataset.price;
-            priceBox.textContent = Number(price).toLocaleString();
-        });
-    });
-});
