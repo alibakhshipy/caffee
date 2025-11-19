@@ -17,3 +17,5 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(models.FooterLinkBox2)
 admin.site.register(models.Product, ProductAdmin)
 admin.site.register(models.ProductVisit)
+admin.site.register(models.ProductVariant)
+admin.site.register(models.ProductGr)

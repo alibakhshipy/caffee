@@ -18,6 +18,12 @@ class FooterLinkBox3(models.Model):
         
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        # Generate slug if not already provided
+        if not self.slug:
+            self.slug = slugify(self.name, allow_unicode=False)
+        super().save(*args, **kwargs)
         
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='نام محصول')
@@ -53,7 +59,7 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         # Generate slug if not already provided
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.name, allow_unicode=False)
         super().save(*args, **kwargs)
 
     def __str__(self):

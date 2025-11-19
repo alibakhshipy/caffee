@@ -106,7 +106,7 @@ class CaffeeGrinderListView(ListView):
     
     def get_queryset(self):
         return Product.objects.filter(
-            FooterLinkBox3__slug = 'grinder',
+            FooterLinkBox3__slug = 'Grinder',
             is_active = True,
             is_delete = True
         )
@@ -120,7 +120,7 @@ class CaffeeBankListView(ListView):
     
     def get_queryset(self):
         return Product.objects.filter(
-            FooterLinkBox3__slug = 'bank',
+            FooterLinkBox3__slug = 'Bank',
             is_active = True,
             is_delete = True
         )        
@@ -133,7 +133,7 @@ class TravelMugListView(ListView):
     
     def get_queryset(self):
         return Product.objects.filter(
-            FooterLinkBox3__slug = 'travel_mug' 
+            FooterLinkBox3__slug = 'Travel_mug' 
         )
 
 class FilterListView(ListView):
@@ -144,7 +144,7 @@ class FilterListView(ListView):
     
     def get_queryset(self):
         return Product.objects.filter(
-            FooterLinkBox3__slug = 'filter' 
+            FooterLinkBox3__slug = 'Filter' 
         )
 
 class FlaskListView(ListView):
@@ -155,7 +155,7 @@ class FlaskListView(ListView):
     
     def get_queryset(self):
         return Product.objects.filter(
-            FooterLinkBox3__slug = 'flask' 
+            FooterLinkBox3__slug = 'Flask' 
         )    
                 
 
@@ -167,5 +167,5 @@ class ShakerListView(ListView):
     
     def get_queryset(self):
         return Product.objects.filter(
-            FooterLinkBox3__slug = 'shaker' 
+            FooterLinkBox3__slug = 'Shaker' 
         )          

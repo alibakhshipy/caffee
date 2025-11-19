@@ -73,3 +73,28 @@ class ProductVisit(models.Model):
         verbose_name = 'بازدید محصول'
         verbose_name_plural = 'بازدیدهای محصول'
 
+
+
+# Product Variant : 40g, 60g, 80g, 95g
+class ProductGr(models.Model):
+    title = models.CharField(max_length=20)
+    weight = models.IntegerField(null=True)
+    class Meta:
+        verbose_name = 'وزن محصول'
+        verbose_name_plural = 'وزن محصولات'
+        
+    def __str__(self):
+        return self.title    
+class ProductVariant(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
+    product2 = models.ForeignKey(ProductGr, null=True, on_delete=models.CASCADE, related_name='variantgr')
+    title = models.CharField(max_length=50)
+    weight = models.IntegerField()
+    price = models.IntegerField()
+    
+    class Meta:
+        verbose_name = 'جزئیات محصول'
+        verbose_name_plural = 'جزئیات محصولات'
+        
+    def __str__(self):
+        return f'{self.product.name} - {self.title}'

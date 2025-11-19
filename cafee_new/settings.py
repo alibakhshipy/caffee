@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'site_module',
     'about_caffee',
     'order_module',
+    'order_cart',
     'django_render_partial',
     'sorl.thumbnail',
     'tailwind',
