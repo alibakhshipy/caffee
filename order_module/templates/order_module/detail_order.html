@@ -34,8 +34,8 @@
     </section>
 
     <!-- count & price -->
-    <form action="{% url 'add_to_cart' %}" method="POST">
-      {% csrf_token %}
+    {% comment %} <form action="{% url 'add_to_cart' %}" method="POST">
+      {% csrf_token %} {% endcomment %}
       <section class="container mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
         <!-- ✔ وزن‌ها -->
         <div class="p-6 rounded-2xl bg-white dark:bg-zinc-700 flex flex-col items-center gap-6">
@@ -111,12 +111,16 @@
           </div>
 
           <!-- خرید -->
-          <button class="text-white text-lg bg-orange-200 hover:bg-orange-300 px-9 py-3 rounded-xl transition">پرداخت</button>
+          <button onclick="addProductToOrder({{ product.id }})"
+          class="text-white text-lg bg-orange-200 hover:bg-orange-300 px-9 py-3 rounded-xl transition">
+          افزودن به سبد خرید
+        </button>
+        
         </div>
       </section>
 
       <!-- جاوااسکریپت -->
       <script src="{% static 'js/custom.js' %}"></script>
-    </form>
+    {% comment %} </form> {% endcomment %}
   </main>
 {% endblock %}

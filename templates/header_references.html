@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="icon" href="{% static 'image/fav-icon.png' %}">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')

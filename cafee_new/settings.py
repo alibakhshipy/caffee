@@ -96,8 +96,12 @@ AUTH_USER_MODEL = 'account_module.User'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'caffe_db',
+        'USER': 'caffe_user',
+        'PASSWORD': '8585',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

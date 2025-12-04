@@ -41,3 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+function addProductToOrder(productId) {
+    const productCount = $('#counter').val();
+    const productPrice = $('#product-price').text();
+    $.get('/cart/add_to_cart/?product_id=' + productId + '&count=' + productCount + '&price=' + productPrice)
+        .then(res => {
+            console.log(res);
+        });
+        
+}
