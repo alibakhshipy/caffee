@@ -45,17 +45,29 @@ function addProductToOrder(productId) {
     $.get("/cart/add_to_cart/?product_id=" + productId + "&count=" + productCount + "&price=" + productPrice).then(
         (res) => {
             Swal.fire({
-                    title: "اعلان",
-                    text: res.text,
-                    icon: res.icon,
-                    showCancelButton: false,
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: res.confirmButtonText,
-                }).then(result => {
-                    if (result.isConfirmed && res.status === 'not_none') {
-                        window.location.href = '/login';
-                    }
-                });
+                title: "اعلان",
+                text: res.text,
+                icon: res.icon,
+                showCancelButton: false,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: res.confirmButtonText,
+            }).then((result) => {
+                if (result.isConfirmed && res.status === "not_none") {
+                    window.location.href = "/login";
+                }
+            });
         }
     );
+}
+
+// script page shop_cafe سبد خرید
+
+function changeQty(id, delta) {
+    const el = document.getElementById("qty-" + id);
+    let value = parseInt(el.innerText);
+
+    value += delta;
+    if (value < 1) value = 1;
+
+    el.innerText = value;
 }

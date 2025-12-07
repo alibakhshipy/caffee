@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-
+from djmoney.models.fields import MoneyField
 from account_module.models import User
 
 
@@ -16,8 +16,8 @@ class FooterLinkBox2(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='نام محصول')
-    price = models.IntegerField(verbose_name='قیمت')
-    price2 = models.IntegerField(verbose_name='قیمت بدون تخفیف', blank=True, null=True)
+    price = MoneyField(max_digits=14, decimal_places=0, default_currency='IRR', verbose_name='قیمت')
+    price2 = MoneyField(max_digits=14, decimal_places=0, default_currency='IRR', blank=True, null=True, verbose_name='قیمت بدون تخفیف')
     is_available = models.BooleanField(default=False, verbose_name='موجودی محصول')
     image = models.ImageField(upload_to='images/product', blank=True, null=True)
     discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0)
@@ -90,7 +90,7 @@ class ProductVariant(models.Model):
     product2 = models.ForeignKey(ProductGr, null=True, on_delete=models.CASCADE, related_name='variantgr')
     title = models.CharField(max_length=50)
     weight = models.IntegerField()
-    price = models.IntegerField()
+    price = MoneyField(max_digits=14, decimal_places=0, default_currency='IRR', verbose_name='قیمت')
     
     class Meta:
         verbose_name = 'جزئیات محصول'

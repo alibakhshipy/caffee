@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from djmoney.money import Money
 
+DEFAULT_CURRENCY = 'IRR'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'order_cart',
     'django_render_partial',
     'sorl.thumbnail',
+    'djmoney',
     'tailwind',
     'widget_tweaks',
     'theme',

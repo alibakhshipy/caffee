@@ -1,48 +1,78 @@
-{% extends '_layout.html' %}
-
+{% extends "_layout.html" %}
+{% load static %}
 {% block content %}
 
-<main class="pt-0 md:pt-[180px]"> <!-- فاصله از هدر ثابت -->
+<main class="pt-0 md:pt-[160px]">
 
-    <section class="container flex flex-col gap-4">
-      <!-- product in cart -->
-      {% for item in cart_items %}
-        <div class="flex items-center justify-between p-3 bg-white dark:bg-zinc-700 rounded-xl shadow-Normal">
-          <!-- product info -->
-          <div class="flex items-center gap-4">
-            <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" class="w-16 h-16 object-cover rounded-lg" />
-            <div>
-              <h3 class="text-sm md:text-base text-zinc-700 dark:text-white font-DanaDemiBold">{{ item.product.name }}</h3>
-              <span class="text-xs text-gray-400 dark:text-gray-300">قیمت: {{ item.price }} تومان</span>
-            </div>
-          </div>
+  <section class="container flex flex-col gap-4">
 
-          <!-- quantity -->
-          <div class="flex items-center gap-2">
-            <button type="button" class="px-2 py-1 bg-gray-200 dark:bg-gray-600 rounded" onclick="decreaseQty('{{ item.id }}')">-</button>
-            <input type="number" id="qty-{{ item.id }}" value="{{ item.quantity }}" min="1" max="{{ item.product.stock }}" class="w-12 text-center bg-transparent text-sm dark:text-white" />
-            <button type="button" class="px-2 py-1 bg-gray-200 dark:bg-gray-600 rounded" onclick="increaseQty('{{ item.id }}')">+</button>
-          </div>
+    <h2 class="text-lg font-DanaDemiBold text-zinc-700 dark:text-white mb-2">
+      سبد خرید شما
+    </h2>
+
+    <!-- نمونه محصول -->
+    <div class="flex items-center justify-between p-3 rounded-xl shadow-Normal bg-white dark:bg-zinc-700">
+
+      <div class="flex items-center gap-3">
+        <img src="/static/images/sample-product.jpg"
+             class="w-14 h-14 object-cover rounded-xl" />
+
+        <div class="flex flex-col">
+          <span class="text-sm text-zinc-700 dark:text-white font-DanaDemiBold">
+            محصول تست شماره ۱
+          </span>
+          <span class="text-xs text-gray-400 dark:text-gray-300 mt-1">
+            قیمت: 120,000 تومان
+          </span>
         </div>
-      {% endfor %}
-
-      <!-- total & pay -->
-      <div class="flex justify-between items-center p-4 bg-white dark:bg-zinc-700 rounded-xl shadow-Normal mt-4">
-        <span class="text-lg dark:text-white">جمع کل: {{ cart_total }} تومان</span>
-        <a href="#" class="bg-orange-200 hover:bg-orange-300 text-white px-6 py-2 rounded-xl">پرداخت</a>
       </div>
-    </section>
 
-    <script>
-      function increaseQty(id) {
-        const input = document.getElementById(`qty-${id}`)
-        if (+input.value < +input.max) input.value = +input.value + 1
-      }
-      
-      function decreaseQty(id) {
-        const input = document.getElementById(`qty-${id}`)
-        if (+input.value > +input.min) input.value = +input.value - 1
-      }
-    </script>
-  </main>
+      <div class="flex items-center gap-2">
+
+        <!-- کم -->
+        <button onclick="changeQty('1', -1)"
+                class="w-7 h-7 bg-gray-200 dark:bg-gray-600 rounded-lg text-sm font-bold 
+                       text-zinc-700 dark:text-white flex items-center justify-center">
+          -
+        </button>
+
+        <span id="qty-1" class="text-sm dark:text-white">
+          2
+        </span>
+
+        <!-- زیاد -->
+        <button onclick="changeQty('1', 1)"
+                class="w-7 h-7 bg-gray-200 dark:bg-gray-600 rounded-lg text-sm font-bold 
+                       text-zinc-700 dark:text-white flex items-center justify-center">
+          +
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- جمع کل -->
+    <div class="flex justify-between items-center p-4 bg-white dark:bg-zinc-700 rounded-xl shadow-Normal mt-4">
+
+      <span class="text-base font-DanaDemiBold dark:text-white">
+        جمع کل: 240,000 تومان
+      </span>
+
+      <!-- دکمه پرداخت طلایی -->
+      <a href="#"
+         class="px-6 py-2 rounded-xl font-DanaDemiBold 
+                text-zinc-900 bg-yellow-400 hover:bg-yellow-500
+                transition block"
+         style="background-color:#f5c854;">
+        پرداخت
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script src="{% static 'js/custom.js' %}"></script>
+
 {% endblock %}
