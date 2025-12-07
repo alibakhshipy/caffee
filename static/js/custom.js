@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const priceEl = document.getElementById("product-price");
     const variantEls = document.querySelectorAll(".variant-item");
     const counter = document.getElementById("counter");
@@ -7,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedPrice = parseInt(priceEl.textContent.replace(/,/g, ""));
 
     // ✔ انتخاب وزن
-    variantEls.forEach(el => {
+    variantEls.forEach((el) => {
         el.addEventListener("click", () => {
-            variantEls.forEach(i => i.classList.remove("bg-orange-200"));
+            variantEls.forEach((i) => i.classList.remove("bg-orange-200"));
 
             el.classList.add("bg-orange-200");
 
@@ -40,13 +39,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
 function addProductToOrder(productId) {
-    const productCount = $('#counter').val();
-    const productPrice = $('#product-price').text();
-    $.get('/cart/add_to_cart/?product_id=' + productId + '&count=' + productCount + '&price=' + productPrice)
-        .then(res => {
-            console.log(res);
-        });
-        
+    const productCount = $("#counter").val();
+    const productPrice = $("#product-price").text();
+    $.get("/cart/add_to_cart/?product_id=" + productId + "&count=" + productCount + "&price=" + productPrice).then(
+        (res) => {
+            Swal.fire({
+                    title: "اعلان",
+                    text: res.text,
+                    icon: res.icon,
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: res.confirmButtonText,
+                }).then(result => {
+                    if (result.isConfirmed && res.status === 'not_none') {
+                        window.location.href = '/login';
+                    }
+                });
+        }
+    );
 }

@@ -3476,3 +3476,11 @@ input::placeholder {
     background-size: contain; /* اندازه تصویر به اندازه ظرف */
     background-repeat: no-repeat; /* جلوگیری از تکرار تصویر */
 }
+
+.swal2-confirm {
+    background-color: #3085d6 !important;
+}
+
+.swal2-cancel {
+    background-color: #d33 !important;
+}
