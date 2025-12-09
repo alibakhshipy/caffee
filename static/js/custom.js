@@ -1,54 +1,84 @@
+let selectedVariantId = null;
+
 document.addEventListener("DOMContentLoaded", () => {
     const priceEl = document.getElementById("product-price");
     const variantEls = document.querySelectorAll(".variant-item");
     const counter = document.getElementById("counter");
 
-    let selectedPrice = parseInt(priceEl.textContent.replace(/,/g, ""));
+    const defaultPrice = parseInt(priceEl.textContent.replace(/,/g, "")) || 0;
+    let selectedPrice = defaultPrice;
 
-    // ✔ انتخاب وزن
+    function updatePrice() {
+        const count = parseInt(counter.value) || 1;
+        priceEl.textContent = (selectedPrice * count).toLocaleString();
+    }
+
     variantEls.forEach((el) => {
         el.addEventListener("click", () => {
             variantEls.forEach((i) => i.classList.remove("bg-orange-200"));
-
             el.classList.add("bg-orange-200");
 
-            selectedPrice = parseInt(el.dataset.price);
+            selectedPrice = Number(el.dataset.price) || defaultPrice;
+            selectedVariantId = el.dataset.id || null;
+
             updatePrice();
         });
     });
 
-    // ✔ تعداد +
-    document.getElementById("plus-btn").addEventListener("click", () => {
+    document.getElementById("plus-btn")?.addEventListener("click", () => {
         if (counter.value < 10) {
             counter.value++;
             updatePrice();
         }
     });
 
-    // ✔ تعداد -
-    document.getElementById("minus-btn").addEventListener("click", () => {
+    document.getElementById("minus-btn")?.addEventListener("click", () => {
         if (counter.value > 1) {
             counter.value--;
             updatePrice();
         }
     });
-
-    function updatePrice() {
-        const total = selectedPrice * counter.value;
-        priceEl.textContent = total.toLocaleString();
-    }
 });
+
+
+function addProductToOrder(productId) {
+    const productCount = $("#counter").val();
+    let rawPrice = $("#product-price").text();
+    let cleanPrice = rawPrice.replace(/,/g, "");
+
+    let url = "/cart/add_to_cart/?product_id=" + productId +
+              "&count=" + productCount +
+              "&price=" + cleanPrice;
+
+    // فقط اگر وریانت انتخاب شده باشد
+    if (selectedVariantId !== null && selectedVariantId !== undefined) {
+        url += "&variant_id=" + selectedVariantId;
+    }
+
+    $.get(url).then((res) => {
+        Swal.fire({
+            title: "اعلان",
+            text: res.text,
+            icon: res.icon,
+            confirmButtonText: res.confirmButtonText,
+        });
+    });
+}
 
 function addProductToOrder(productId) {
     const productCount = $("#counter").val();
     const productPrice = $("#product-price").text();
-    $.get("/cart/add_to_cart/?product_id=" + productId + "&count=" + productCount + "&price=" + productPrice).then(
+
+    $.get("/cart/add_to_cart/?product_id=" + productId
+        + "&variant_id=" + selectedVariantId
+        + "&count=" + productCount
+        + "&price=" + productPrice
+    ).then(
         (res) => {
             Swal.fire({
                 title: "اعلان",
                 text: res.text,
                 icon: res.icon,
-                showCancelButton: false,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: res.confirmButtonText,
             }).then((result) => {
@@ -61,7 +91,6 @@ function addProductToOrder(productId) {
 }
 
 // script page shop_cafe سبد خرید
-
 
 function changeQty(id, delta, pricePerItem) {
     const qtyEl = document.getElementById("qty-" + id);
@@ -89,4 +118,3 @@ function updateBasketTotal() {
 
     document.getElementById("total-basket").innerText = total.toLocaleString();
 }
- 

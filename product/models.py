@@ -42,7 +42,7 @@ class Product(models.Model):
     @property
     def offer_info(self):
         if self.is_available and self.price2:
-            return f"تخفیف: {self.price2} تومان"
+            return f"{self.price2}"
         return ""
     def get_absolute_url(self):
         # return reverse('product-detail', kwargs={'slug': self.slug})

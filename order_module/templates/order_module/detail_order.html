@@ -37,13 +37,14 @@
     {% comment %} <form action="{% url 'add_to_cart' %}" method="POST">
       {% csrf_token %} {% endcomment %}
       <section class="container mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
-        <!-- ✔ وزن‌ها -->
+        
+        <!-- ✔️ وزن‌ها -->
         <div class="p-6 rounded-2xl bg-white dark:bg-zinc-700 flex flex-col items-center gap-6">
           <div class="w-full text-right text-lg dark:text-white">انتخاب وزن :</div>
 
           <div id="variants" class="flex flex-wrap gap-6 justify-center">
             {% for v in product.variants.all %}
-              <div class="variant-item cursor-pointer inline-flex flex-col items-center gap-y-2 p-2 rounded-xl hover:bg-orange-200 transition" data-id="{{ v.id }}" data-price="{{ v.price }}">
+              <div class="variant-item cursor-pointer inline-flex flex-col items-center gap-y-2 p-2 rounded-xl hover:bg-orange-200 transition" data-id="{{ v.id }}" data-price="{{ v.price.amount }}" data-weight="{{ v.weight }}">
                 <!-- آیکون وزن -->
                 {% if v.weight == 40 %}
                   <svg class="w-10 h-10 dark:hidden">
@@ -107,20 +108,17 @@
           <!-- قیمت -->
           <div class="flex items-center gap-x-3">
             <span class="dark:text-white">قیمت :</span>
-            <span id="product-price" class="text-xl text-zinc-700 dark:text-white">{{ product.price }}</span>
+            <span id="product-price" class="text-xl text-zinc-700 dark:text-white">{{ product.price.amount }}</span>
           </div>
 
           <!-- خرید -->
-          <button onclick="addProductToOrder({{ product.id }})"
-          class="text-white text-lg bg-orange-200 hover:bg-orange-300 px-9 py-3 rounded-xl transition">
-          افزودن به سبد خرید
-        </button>
-        
+          <button onclick="addProductToOrder({{ product.id }})" class="text-white text-lg bg-orange-200 hover:bg-orange-300 px-9 py-3 rounded-xl transition">افزودن به سبد خرید</button>
         </div>
       </section>
 
       <!-- جاوااسکریپت -->
       <script src="{% static 'js/custom.js' %}"></script>
-    {% comment %} </form> {% endcomment %}
+      {% comment %}
+    </form> {% endcomment %}
   </main>
 {% endblock %}

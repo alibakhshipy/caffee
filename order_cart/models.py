@@ -1,5 +1,5 @@
 from django.db import models
-from product.models import Product
+from product.models import Product, ProductVariant
 from account_module.models import User
 
 
@@ -17,10 +17,11 @@ class Order(models.Model):
         
         
 class OrderDetail(models.Model):
+    variant = models.ForeignKey(ProductVariant, on_delete=models.SET_NULL, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='سبد خرید')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='محصول')
     final_price = models.IntegerField(null=True, blank=True, verbose_name='قیمت نهایی')
-    count = models.IntegerField(verbose_name='تعداد') 
+    count = models.IntegerField(verbose_name='تعداد', default=1) 
     
     
     def get_total_price(self):
