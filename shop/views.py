@@ -7,10 +7,10 @@ from order_cart.models import Order
 # Create your views here.
 
 def user_basket(request: HttpRequest):
-    curentorder, create = Order.objects.get_or_create(is_paid=False, user_id=request.user.id)
+    curentorder, create = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False, user_id=request.user.id)
     total_amount = 0
     for order_detail in curentorder.orderdetail_set.all():
-        total_amount += order_detail.product.price * order_detail.count
+        total_amount += order_detail.product.price.amount * order_detail.count
     
     context={
         'order': curentorder,

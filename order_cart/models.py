@@ -20,7 +20,11 @@ class OrderDetail(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='سبد خرید')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='محصول')
     final_price = models.IntegerField(null=True, blank=True, verbose_name='قیمت نهایی')
-    count = models.IntegerField(verbose_name='تعداد')   
+    count = models.IntegerField(verbose_name='تعداد') 
+    
+    
+    def get_total_price(self):
+        return self.count * self.product.price.amount
     
     def __str__(self):
         return str(self.order)

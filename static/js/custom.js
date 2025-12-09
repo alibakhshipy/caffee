@@ -62,12 +62,30 @@ function addProductToOrder(productId) {
 
 // script page shop_cafe سبد خرید
 
-function changeQty(id, delta) {
-    const el = document.getElementById("qty-" + id);
-    let value = parseInt(el.innerText);
 
-    value += delta;
-    if (value < 1) value = 1;
+function changeQty(id, delta, pricePerItem) {
+    const qtyEl = document.getElementById("qty-" + id);
+    let qty = parseInt(qtyEl.innerText);
 
-    el.innerText = value;
+    qty += delta;
+    if (qty < 1) qty = 1;
+
+    qtyEl.innerText = qty;
+
+    // قیمت کل این محصول
+    const itemTotal = qty * pricePerItem;
+    document.getElementById("price-" + id).innerText = itemTotal.toLocaleString() + " تومان";
+
+    updateBasketTotal();
+}
+
+function updateBasketTotal() {
+    let total = 0;
+
+    document.querySelectorAll("[id^='price-']").forEach((el) => {
+        let num = parseInt(el.innerText.replace(/[^0-9]/g, ""));
+        total += num;
+    });
+
+    document.getElementById("total-basket").innerText = total.toLocaleString();
 }
