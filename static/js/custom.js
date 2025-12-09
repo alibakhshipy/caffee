@@ -89,3 +89,4 @@ function updateBasketTotal() {
 
     document.getElementById("total-basket").innerText = total.toLocaleString();
 }
+ 
