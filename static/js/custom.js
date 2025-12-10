@@ -103,7 +103,7 @@ function changeQty(id, delta, pricePerItem) {
 
     // قیمت کل این محصول
     const itemTotal = qty * pricePerItem;
-    document.getElementById("price-" + id).innerText = itemTotal.toLocaleString() + " تومان";
+    document.getElementById("price-" + id).innerText = itemTotal.toLocaleString() + "ریال";
 
     updateBasketTotal();
 }

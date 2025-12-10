@@ -29,7 +29,7 @@ class OrderDetail(models.Model):
     
     def __str__(self):
         return str(self.order)
-    
+
     
     class Meta:
         verbose_name = 'جزئیات سبد خرید'
