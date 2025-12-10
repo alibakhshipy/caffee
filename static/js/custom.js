@@ -92,29 +92,101 @@ function addProductToOrder(productId) {
 
 // script page shop_cafe سبد خرید
 
-function changeQty(id, delta, pricePerItem) {
-    const qtyEl = document.getElementById("qty-" + id);
-    let qty = parseInt(qtyEl.innerText);
+// function changeQty(id, delta, pricePerItem) {
+//     const qtyEl = document.getElementById("qty-" + id);
+//     let qty = parseInt(qtyEl.innerText);
 
-    qty += delta;
-    if (qty < 1) qty = 1;
+//     qty += delta;
+//     if (qty < 1) qty = 1;
 
-    qtyEl.innerText = qty;
+//     qtyEl.innerText = qty;
 
-    // قیمت کل این محصول
-    const itemTotal = qty * pricePerItem;
-    document.getElementById("price-" + id).innerText = itemTotal.toLocaleString() + "ریال";
+//     // قیمت کل این محصول
+//     const itemTotal = qty * pricePerItem;
+//     document.getElementById("price-" + id).innerText = itemTotal.toLocaleString() + "ریال";
 
-    updateBasketTotal();
+//     updateBasketTotal();
+// }
+
+// function updateBasketTotal() {
+//     let total = 0;
+
+//     document.querySelectorAll("[id^='price-']").forEach((el) => {
+//         let num = parseInt(el.innerText.replace(/[^0-9]/g, ""));
+//         total += num;
+//     });
+
+//     document.getElementById("total-basket").innerText = total.toLocaleString();
+// }
+
+
+// تابع کمکی برای فرمت کردن قیمت به ریال
+function formatCurrency(value) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ریال";
 }
 
+async function changeQty(id, delta, updateUrl) {
+    const qtyEl = document.getElementById("qty-" + id);
+    let qty = parseInt(qtyEl.innerText);
+    const pricePerItem = parseInt(document.getElementById("price-" + id).innerText.replace(/[^0-9]/g, "")) / qty;
+    
+    qty += delta;
+    if (qty < 1) qty = 1;
+    
+    qtyEl.innerText = qty;
+    
+    // ارسال درخواست به سرور برای ذخیره تغییرات
+    try {
+        const formData = new FormData();
+        formData.append('detail_id', id);
+        formData.append('count', qty);
+        
+        const response = await fetch(updateUrl, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.status === 'success') {
+            // به‌روزرسانی قیمت با داده‌های سرور
+            document.getElementById("price-" + id).innerText = formatCurrency(data.new_total_price);
+            updateBasketTotal();
+        }
+    } catch (error) {
+        console.error('Error updating cart:', error);
+        // بازگشت به مقدار قبلی در صورت خطا
+        qtyEl.innerText = qty - delta;
+    }
+}
+
+// تابع اصلاح شده updateBasketTotal
 function updateBasketTotal() {
     let total = 0;
-
+    
     document.querySelectorAll("[id^='price-']").forEach((el) => {
         let num = parseInt(el.innerText.replace(/[^0-9]/g, ""));
         total += num;
     });
+    
+    document.getElementById("total-basket").innerText = formatCurrency(total);
+}
 
-    document.getElementById("total-basket").innerText = total.toLocaleString();
+// تابع کمکی برای دریافت CSRF Token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
