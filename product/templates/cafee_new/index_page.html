@@ -1,744 +1,735 @@
 {% extends '_layout.html' %}
 {% load pool_extras %}
 {% block content %}
-  <main>
+<main>
 
-    <section
-         class="relative home bg-home-mobile w-full h-[200px] xs:h-auto aspect-[2/1] md:aspect-auto md:bg-home-desktop bg-no-repeat bg-cover bg-[center_top]">
+  <section
+    class="relative home bg-home-mobile w-full h-[200px] xs:h-auto aspect-[2/1] md:aspect-auto md:bg-home-desktop bg-no-repeat bg-cover bg-[center_top]">
 
-      <!-- div box title -->
-      <div class="container relative flex justify-end items-center overflow-y-hidden h-full md:min-h-screen ">
+    <!-- div box title -->
+    <div class="container relative flex justify-end items-center overflow-y-hidden h-full md:min-h-screen ">
 
-        <!-- box title -->
-        <div>
-          <h4 class="font-MorabbaBold text-2xl md:text-[60px] text-white shadow-sm mb-0.5 md:mb-8">قهوه عربیکا
-            تانزانیا</h4>
-          <span class="font-MorabbaLight text-xl md:text-[48px] text-white shadow-sm">یک فنجان بالانس !</span>
-          <span class="block w-[100px] h-px md:h-0.5 bg-orange-300 my-3 md:my-8"></span>
-          <p class="font-DanaMedium text-xs md:text-2xl text-white w-52 md:w-[460px]">قطعا نام آشنای عربیکا را
-            شنیده اید، عربیکا یکی از گونه های قهوه است که در نواحی مختلف کمربند قهوه کشت میشود.</p>
+      <!-- box title -->
+      <div>
+        <h4 class="font-MorabbaBold text-2xl md:text-[60px] text-white shadow-sm mb-0.5 md:mb-8">قهوه عربیکا
+          تانزانیا</h4>
+        <span class="font-MorabbaLight text-xl md:text-[48px] text-white shadow-sm">یک فنجان بالانس !</span>
+        <span class="block w-[100px] h-px md:h-0.5 bg-orange-300 my-3 md:my-8"></span>
+        <p class="font-DanaMedium text-xs md:text-2xl text-white w-52 md:w-[460px]">قطعا نام آشنای عربیکا را
+          شنیده اید، عربیکا یکی از گونه های قهوه است که در نواحی مختلف کمربند قهوه کشت میشود.</p>
+      </div>
+
+      <!-- circels -->
+      <div class="circels ">
+        <div class="circels hidden sm:flex item--lg">
+          <div class="circels item--md">
+            <div class="circels item--sm">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- enhena bottom -->
+    <svg
+      class="absolute bottom-0 left-0 right-0 mx-auto w-[100px] h-[22px] hidden sm:inline-block text-gray-100 xl:text-gray-300 dark:text-zinc-900">
+      <use href="#curve"></use>
+    </svg>
+
+    <!-- icon of more -->
+    <a id="header" href="#footer"
+      class="absolute bottom-0 left-0 right-0 mx-auto  translate-y-2/4 w-8 h-8 border-2 border-orange-300 hidden sm:flex items-center justify-center rounded-full">
+      <svg class="w-4 h-4">
+        <use class="w-3.5 h-3.5 text-zinc-700 dark:text-white" href="#chevron-down"></use>
+      </svg>
+    </a>
+
+  </section>
+
+  <!-- section products -->
+  <section>
+
+    <!-- background section products -->
+    <div class="products-img flex">
+      <!-- header section -->
+      <div class="container mt-8 md:mt-48">
+        <!-- title header section -->
+        <div class="flex justify-between items-end">
+          <!-- right-side-header-section -->
+
+
+          <!-- right-side-header-section -->
+          <div>
+            <h4 class="products-title"> محصولات پر فروش </h4>
+            <span class="products-sub-title">پیشنهاد قهوه خور ها ...</span>
+          </div>
+
+          <!-- left-side-header-section -->
+          <div class="flex items-center justify-center gap-x-3 md:gap-x-5 h-10 md:w-52 rounded-md ">
+
+            <span
+              class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full">
+              <svg class=" dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2 rotate-180">
+                <use class="" href="#chevron-left"></use>
+              </svg>
+            </span>
+
+            <span
+              class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full ">
+              <svg class=" dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2">
+                <use class="" href="#chevron-left"></use>
+              </svg>
+            </span>
+
+          </div>
+
         </div>
 
-        <!-- circels -->
-        <div class="circels ">
-          <div class="circels hidden sm:flex item--lg">
-            <div class="circels item--md">
-              <div class="circels item--sm">
+        <!-- product fav box -->
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal  child:transition-colors">
+
+          <!-- product-2 -->
+          {% for product in featured_products %}
+          <a href="{% url 'product_detail' product.slug %}">
+            <div>
+              <!-- img product -->
+              <div class=" flex items-center justify-center">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="">
+                {% else %}
+                <img class="w-32 sm:w-64 hover:scale-105 transition-transform"
+                  src="../../../static/image/products/p4.png" alt="">
+                {% endif %}
+
+              </div>
+
+              <!-- content product -->
+              <div>
+
+                <!-- introduction -->
+                <h4
+                  class="font-DanaMedium text-sm sm:text-xl mt-2 md:mt-5 text-zinc-700 dark:text-white line-clamp-2 min-h-10 sm:min-h-14 transition-colors">
+                  {{ product.name }}</h4>
+
+                <!-- wrapper price -->
+                <div class="mt-1.5 md:mt-2.5 flex flex-col items-center gap-x-2.5">
+                  <div>
+                    <span
+                      class="text-base sm:text-xl font-DanaDemiBold text-teal-600 inline-block">{{ product.display_info }}</span>
+                  </div>
+
+                  <!-- wrapper offer (اگر نیاز دارید این قسمت رو هم نمایش بدید) -->
+                  {% if product.offer_info %}
+                  <div class="relative">
+                    <span
+                      class="line-offer absolute top-2.5 sm:top-3 inline-block w-14 sm:w-[70px] xl:w-[112px] border border-red-500"></span>
+                    <span
+                      class="text-base sm:text-xl font-DanaRegular text-gray-400 line-through decortion-red-500">{{ product.offer_info }}</span>
+
+                  </div>
+                  {% endif %}
+                </div>
+                <!-- icon & score -->
+                <div class="flex items-center justify-between mt-2.5 sm:mt-4">
+
+                  <!-- right-side-icon w-7 h-7 sm:w-[36px] sm:h-[36px]-->
+                  <div class="flex items-center gap-x-1 sm:gap-x-3 ">
+
+                    <span>
+                      <svg
+                        class="w-7 h-7 sm:w-[36px] sm:h-[36px] bg-gray-100 dark:bg-zinc-800 stroke-gray-400 dark:stroke-gray-400  hover:bg-teal-600 dark:hover:bg-teal-600 hover:stroke-white dark:hover:stroke-white rounded-full p-1.5">
+                        <use class="" href="#shoping-cart"></use>
+                      </svg>
+                    </span>
+
+                    <span>
+                      <svg class="w-4 h-4 sm:w-6 sm:h-6 hover:child:text-emerald-500 cursor-pointer">
+                        <use class="text-gray-400 " href="#arrows-right-left"></use>
+                      </svg>
+                    </span>
+
+
+                  </div>
+
+                  <!-- score -->
+                  <div class="flex">
+                    <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                      <use class="text-gray-300" href="#star-outline"></use>
+                    </svg>
+                    <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                      <use class="text-yellow-400" href="#star-outline"></use>
+                    </svg>
+                    <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                      <use class="text-yellow-400" href="#star-outline"></use>
+                    </svg>
+                    <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                      <use class="text-yellow-400" href="#star-outline"></use>
+                    </svg>
+                    <svg class="w-4 h-4 sm:w-6 sm:h-6">
+                      <use class="text-yellow-400" href="#star-outline"></use>
+                    </svg>
+                  </div>
+
+                </div>
 
               </div>
             </div>
+          </a>
+          {% endfor %}
+  </section>
+  </div>
+  <!-- product2 -->
+  <!-- عنوان جدیدترین محصولات -->
+  <div class="flex justify-between items-end mt-16">
+    <div>
+      <h4 class="products-title"> جدیدترین محصولات </h4>
+      <span class="products-sub-title">برای اولین بار امتحان کن!</span>
+    </div>
+    <div class="flex items-center justify-center gap-x-3 md:gap-x-5 h-10 md:w-52 rounded-md">
+      <span
+        class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full">
+        <svg class="dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2 rotate-180">
+          <use href="#chevron-left"></use>
+        </svg>
+      </span>
+      <span
+        class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full ">
+        <svg class="dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2">
+          <use href="#chevron-left"></use>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- لیست محصولات جدید -->
+  <div
+    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal child:transition-colors">
+    {% for product in new_products %}
+    <div>
+      <div class="flex items-center justify-center">
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="">
+        {% else %}
+        <img class="w-32 sm:w-64 hover:scale-105 transition-transform" src="../../../static/image/products/p4.png"
+          alt="">
+        {% endif %}
+      </div>
+
+      <div>
+        <h4
+          class="font-DanaMedium text-sm sm:text-xl mt-2 md:mt-5 text-zinc-700 dark:text-white line-clamp-2 min-h-10 sm:min-h-14 transition-colors">
+          {{ product.name }}</h4>
+
+        <div class="mt-1.5 md:mt-2.5 flex flex-col items-center gap-x-2.5">
+          <div>
+            <span
+              class="text-base sm:text-xl font-DanaDemiBold text-teal-600 inline-block">{{ product.display_info }}</span>
           </div>
+
+          {% if product.offer_info %}
+          <div class="relative">
+            <span
+              class="line-offer absolute top-2.5 sm:top-3 inline-block w-14 sm:w-[70px] xl:w-[112px] border border-red-500"></span>
+            <span
+              class="text-base sm:text-xl font-DanaRegular text-gray-400 inline-block">{{ product.offer_info }}</span>
+            <span class="hidden xl:inline-block sm:text-sm text-gray-400 tracking-wider">تومان</span>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="flex items-center justify-between mt-2.5 sm:mt-4">
+          <div class="flex items-center gap-x-1 sm:gap-x-3">
+            <span>
+              <svg
+                class="w-7 h-7 sm:w-[36px] sm:h-[36px] bg-gray-100 dark:bg-zinc-800 stroke-gray-400 dark:stroke-gray-400 hover:bg-teal-600 dark:hover:bg-teal-600 hover:stroke-white dark:hover:stroke-white rounded-full p-1.5">
+                <use href="#shoping-cart"></use>
+              </svg>
+            </span>
+            <span>
+              <svg class="w-4 h-4 sm:w-6 sm:h-6 hover:child:text-emerald-500 cursor-pointer">
+                <use class="text-gray-400" href="#arrows-right-left"></use>
+              </svg>
+            </span>
+          </div>
+
+          <div class="flex">
+            <svg class="w-4 h-4 sm:w-6 sm:h-6">
+              <use class="text-yellow-400" href="#star-outline"></use>
+            </svg>
+            <svg class="w-4 h-4 sm:w-6 sm:h-6">
+              <use class="text-yellow-400" href="#star-outline"></use>
+            </svg>
+            <svg class="w-4 h-4 sm:w-6 sm:h-6">
+              <use class="text-yellow-400" href="#star-outline"></use>
+            </svg>
+            <svg class="w-4 h-4 sm:w-6 sm:h-6">
+              <use class="text-yellow-400" href="#star-outline"></use>
+            </svg>
+            <svg class="w-4 h-4 sm:w-6 sm:h-6">
+              <use class="text-gray-300" href="#star-outline"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- coffe clab -->
+  <div class="container">
+
+    <div
+      class="  flex flex-col lg:flex-row  justify-between items-center gap-y-4 py-[23px] px-2.5 xs:px-[43px] mt-8 md:mt-20 rounded-2xl shadow-Normal bg-gradient-to-r from-emerald-500 to-emerald-600">
+
+      <!-- right content -->
+      <div class="flex items-center justify-center gap-x-6">
+        <img src="../static/image/club/diamond.png" alt="">
+        <div>
+          <h4 class="font-MorabbaBold text-xl sm:text-2xl md:text-5xl text-white mb-2">کافی
+            کلاب</h4>
+          <span class="font-MorabbaLight text-[17px] md:text-2xl text-white ">میدونستی میتونی با امتیاز هات قهوه بگیری
+            ؟</span>
+        </div>
+      </div>
+
+      <!-- left content -->
+      <div class="flex items-center justify-center gap-x-3 xl:gap-x-[110px]">
+
+        <!-- link item -->
+        <div class="flex items-center justify-center gap-x-2 md:gap-x-5 ">
+          <div
+            class="flex flex-col items-center gap-y-1.5 w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] bg-white rounded-2xl">
+
+            <svg
+              class="w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] px-4 md:px-[29px] mt-1.5 md:pt-5  ">
+              <use href="#discovery"></use>
+            </svg>
+
+            <h5 class="font-DanaRegular text-xs md:text-sm text-emerald-600 mb-1 ">چرخ و
+              بخت</h5>
+          </div>
+
+          <div
+            class="flex flex-col items-center gap-y-1.5 w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] bg-white rounded-2xl">
+
+            <svg
+              class="w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] px-2 xs:px-4 md:px-[29px] mt-1.5 md:pt-5 ">
+              <use href="#activity"></use>
+            </svg>
+
+            <h5 class="font-DanaRegular text-xs md:text-sm text-emerald-600 mb-1 "> ماموریت
+              ها </h5>
+          </div>
+
+          <div
+            class="flex flex-col items-center gap-y-1.5 w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] bg-white rounded-2xl">
+
+            <svg
+              class="w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] px-4 md:px-[29px] mt-2 sm:mt-2.5 md:pt-5 ">
+              <use href="#ticket-star"></use>
+            </svg>
+
+            <h5 class="font-DanaRegular text-xs md:text-sm text-emerald-600 mb-1 "> جایزه
+              ها </h5>
+          </div>
+        </div>
+
+        <!-- score & gift -->
+        <div class="text-white flex flex-col items-center ">
+
+          <!-- score -->
+          <div class="flex flex-col justify-center ">
+            <span class=" inline-block font-DanaMedium text-2xl md:text-3xl mb-1">542</span>
+            <span class="font-DanaRegular text-xs md:text-sm">امتیـــــــاز شما</span>
+          </div>
+
+          <!-- gift -->
+          <a class="flex items-center justify-center mt-2 w-[90px] xs:w-[100px] h-[30px] md:w-28 md:h-9 rounded-[100px] bg-gradient-to-r from-orange-200 to-orange-300 "
+            href="#">
+            <span class="font-DanaMedium text-[10px] xs:text-xs md:text-sm">دریافت جایزه</span>
+            <svg class=" w-5 h-5 md:w-6  md:h-6 fill-white">
+              <use href="#chevron-left"></use>
+            </svg>
+          </a>
         </div>
 
       </div>
 
-      <!-- enhena bottom -->
-      <svg
-           class="absolute bottom-0 left-0 right-0 mx-auto w-[100px] h-[22px] hidden sm:inline-block text-gray-100 xl:text-gray-300 dark:text-zinc-900">
-        <use href="#curve"></use>
-      </svg>
+      
+    </div>
+    <!-- weblog -->
+    <section class="container mt-8 md:mt-20">
 
-      <!-- icon of more -->
-      <a id="header" href="#footer"
-         class="absolute bottom-0 left-0 right-0 mx-auto  translate-y-2/4 w-8 h-8 border-2 border-orange-300 hidden sm:flex items-center justify-center rounded-full">
-        <svg class="w-4 h-4">
-          <use class="w-3.5 h-3.5 text-zinc-700 dark:text-white" href="#chevron-down"></use>
-        </svg>
-      </a>
+      <!-- title weblog section -->
+      <div class="flex justify-between items-center md:items-end">
+
+        <!-- right-side-header-section -->
+        <div>
+          <h4 class="products-title"> مطالب خواندنی</h4>
+        </div>
+
+        <!-- left-side-header-section -->
+        <div class="flex items-center justify-center  md:gap-x-1 hover:bg-orange-200/20 h-10  md:w-52 rounded-md">
+          <a class=" text-orange-300 font-DanaRegular text-base md:text-xl tracking-tightest hidden md:block"
+            href="#">مشاهده همه مطالب</a>
+          <a class="link-head-products-mobile" href="#">مشاهده همه</a>
+          <svg class="w-5 h-5 fill-orange-300">
+            <use class="" href="#chevron-left"></use>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- section weblog item -->
+      <div
+        class="mt-5 md:mt-12 flex items-center justify-center  gap-2 md:gap-5 flex-wrap child:p-2.5 child:w-[448px] sm:child:w-[300px] sm:child:h-72 child:bg-white dark:child:bg-zinc-700 child:rounded-2xl child:shadow-Normal">
+
+        <!-- box1 -->
+        <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
+
+          <!-- img div -->
+          <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
+
+            <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
+              src="../../../static/image/blogs/blog-1.png" alt="">
+
+            <!-- img hover -->
+            <div
+              class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
+
+              <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
+                <use href="#logo-type"></use>
+
+              </svg>
+
+            </div>
+
+          </div>
+
+          <!-- content box 1 -->
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-around sm:justify-between gap-x-5 w-full sm:mt-4">
+            <!-- title -->
+            <a href="{% url 'about' %}"
+              class="inline-block font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2"
+              target="_blank">تاریخچه قهوه ی خوش طعم عربیکا</a>
+
+            <!-- line between -->
+            <span class="inline-block w-full h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10 "></span>
+
+            <!-- date & link-btn -->
+            <div class=" flex flex-row sm:flex-col items-center justify-between ">
+
+              <!-- date -->
+              <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
+                <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
+                <span class="font-DanaMedium text-xs sm:text-sm ">مرداد </span>
+                <span class="font-DanaMedium text-xs sm:text-sm ">1401 </span>
+              </div>
+
+              <!-- link-btn -->
+              <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
+                href="#">
+                <span class="font-DanaMedium text-xs">مطالعه</span>
+                <svg class="w-3.5 h-3.5 ">
+                  <use href="#arrow-left"></use>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- box2 -->
+        <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
+
+          <!-- img div -->
+          <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
+
+            <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
+              src="../../../static/image/blogs/blog-2.png" alt="">
+
+            <!-- img hover -->
+            <div
+              class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
+
+              <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
+                <use href="#logo-type"></use>
+
+              </svg>
+
+            </div>
+
+          </div>
+
+          <!-- content box 2 -->
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-around sm:justify-between gap-x-5 w-full sm:mt-4">
+            <!-- title -->
+            <a href="pages/content-robosta.html"
+              class="inline-block font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2"
+              target="_blank">از طعم روبوستا خوشت میاد؟! پس اینو بخون</a>
+
+            <!-- line between -->
+            <span class="inline-block w-full h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10 "></span>
+
+            <!-- date & link-btn -->
+            <div class=" flex flex-row sm:flex-col items-center justify-between ">
+
+              <!-- date -->
+              <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
+                <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
+                <span class="font-DanaMedium text-xs sm:text-sm ">مرداد </span>
+                <span class="font-DanaMedium text-xs sm:text-sm ">1401 </span>
+              </div>
+
+              <!-- link-btn -->
+              <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
+                href="#">
+                <span class="font-DanaMedium text-xs">مطالعه</span>
+                <svg class="w-3.5 h-3.5 ">
+                  <use href="#arrow-left"></use>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- box3 -->
+        <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
+
+          <!-- img div -->
+          <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
+
+            <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
+              src="../../../static/image/blogs/blog-3.png" alt="">
+
+            <!-- img hover -->
+            <div
+              class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
+
+              <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
+                <use href="#logo-type"></use>
+
+              </svg>
+
+            </div>
+
+          </div>
+
+          <!-- content box 3 -->
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-around sm:justify-between gap-x-5 w-full sm:mt-4">
+            <!-- title -->
+            <span
+              class="font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2">طرز
+              تهیه یک فنجان کافه زینو برزیلی</span>
+
+            <!-- line between -->
+            <span class="inline-block w-full h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10 "></span>
+
+            <!-- date & link-btn -->
+            <div class=" flex flex-row sm:flex-col items-center justify-between ">
+
+              <!-- date -->
+              <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
+                <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
+                <span class="font-DanaMedium text-xs sm:text-sm ">مرداد </span>
+                <span class="font-DanaMedium text-xs sm:text-sm ">1401 </span>
+              </div>
+
+              <!-- link-btn -->
+              <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
+                href="#">
+                <span class="font-DanaMedium text-xs">مطالعه</span>
+                <svg class="w-3.5 h-3.5 ">
+                  <use href="#arrow-left"></use>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- box4 -->
+        <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
+
+          <!-- img div -->
+          <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
+
+            <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
+              src="../../../static/image/blogs/blog-4.png" alt="">
+
+            <!-- img hover -->
+            <div
+              class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
+
+              <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
+                <use href="#logo-type"></use>
+
+              </svg>
+
+            </div>
+
+          </div>
+
+          <!-- content box 4 -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-x-0 w-full sm:mt-4 border-red-500">
+            <!-- title -->
+            <span
+              class="font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2 w-auto">
+              طرز تهیه قهوه دالگونا مناسب روز‌های کرونایی
+            </span>
+
+            <!-- line between -->
+            <span class="inline-block w-auto h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10"></span>
+
+            <!-- date & link-btn -->
+            <div class="flex flex-row sm:flex-col items-center justify-between">
+              <!-- date -->
+              <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
+                <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
+                <span class="font-DanaMedium text-xs sm:text-sm">مرداد</span>
+                <span class="font-DanaMedium text-xs sm:text-sm">1401</span>
+              </div>
+
+              <!-- link-btn -->
+              <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
+                href="#">
+                <span class="font-DanaMedium text-xs">مطالعه</span>
+                <svg class="w-3.5 h-3.5">
+                  <use href="#arrow-left"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
 
     </section>
 
-    <!-- section products -->
+    <!-- contact us -->
     <section>
+      <div class="container mt-7 md:mt-28 flex flex-col items-start sm:flex-row gap-5">
 
-      <!-- background section products -->
-      <div class="products-img flex">
-        <!-- header section -->
-        <div class="container mt-8 md:mt-48">
-          <!-- title header section -->
-          <div class="flex justify-between items-end">
-            <!-- right-side-header-section -->
+        <!-- right side image -->
+        <div class="flex justify-center w-full sm:w-[300px]">
+          <img class=" shrink-0 w-[298px]" src="../static/image/contact.png" alt="">
+        </div>
 
+        <!-- left side content -->
+        <div class="text-zinc-700 dark:text-white">
+          <h3 class="font-MorabbaMedium text-2xl md:text-3xl lg:text-5xl mb-0.5 md:mb-1.5">یکی
+            از
+            بهترین
+            قهوه
+            ها !</h3>
+          <span class="font-MorabbaLight text-base md:text-lg lg:text-3xl">کیفیت قهوه را از ما بخواهید ...</span>
 
-            <!-- right-side-header-section -->
-            <div>
-              <h4 class="products-title"> محصولات پر فروش </h4>
-              <span class="products-sub-title">پیشنهاد قهوه خور ها ...</span>
-            </div>
-
-            <!-- left-side-header-section -->
-            <div class="flex items-center justify-center gap-x-3 md:gap-x-5 h-10 md:w-52 rounded-md ">
-
-            <span
-                 class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full">
-                <svg class=" dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2 rotate-180">
-                    <use class="" href="#chevron-left"></use>
-                </svg>
-            </span>
-
-              <span
-                   class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full ">
-                <svg class=" dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2">
-                    <use class="" href="#chevron-left"></use>
-                </svg>
-            </span>
-
-            </div>
-
-          </div>
-
-          <!-- product fav box -->
+          <!-- circles -->
           <div
-               class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal  child:transition-colors">
-
-            <!-- product-2 -->
-            {% for product in featured_products %}
-              <a href="{% url 'product_detail' product.slug %}">
-              <div>
-                <!-- img product -->
-                <div class=" flex items-center justify-center">
-                  {% if product.image %}
-                    <img src="{{ product.image.url }}" alt="">
-                  {% else %}
-                    <img class="w-32 sm:w-64 hover:scale-105 transition-transform"
-                         src="../../../static/image/products/p4.png" alt="">
-                  {% endif %}
-
-                </div>
-
-                <!-- content product -->
-                <div>
-
-                  <!-- introduction -->
-                  <h4
-                       class="font-DanaMedium text-sm sm:text-xl mt-2 md:mt-5 text-zinc-700 dark:text-white line-clamp-2 min-h-10 sm:min-h-14 transition-colors">
-                    {{ product.name }}</h4>
-
-                  <!-- wrapper price -->
-                  <div class="mt-1.5 md:mt-2.5 flex flex-col items-center gap-x-2.5">
-                    <div>
-                      <span
-                           class="text-base sm:text-xl font-DanaDemiBold text-teal-600 inline-block">{{ product.display_info }}</span>
-                    </div>
-                    
-                    <!-- wrapper offer (اگر نیاز دارید این قسمت رو هم نمایش بدید) -->
-                    {% if product.offer_info %}
-                      <div class="relative">
-                        <span
-                             class="line-offer absolute top-2.5 sm:top-3 inline-block w-14 sm:w-[70px] xl:w-[112px] border border-red-500"></span>
-                        <span
-                             class="text-base sm:text-xl font-DanaRegular text-gray-400 line-through decortion-red-500">{{ product.offer_info }}</span>
-                        
-                      </div>
-                    {% endif %}
-                  </div>
-                  <!-- icon & score -->
-                  <div class="flex items-center justify-between mt-2.5 sm:mt-4">
-
-                    <!-- right-side-icon w-7 h-7 sm:w-[36px] sm:h-[36px]-->
-                    <div class="flex items-center gap-x-1 sm:gap-x-3 ">
-
-                                <span>
-                                    <svg
-                                         class="w-7 h-7 sm:w-[36px] sm:h-[36px] bg-gray-100 dark:bg-zinc-800 stroke-gray-400 dark:stroke-gray-400  hover:bg-teal-600 dark:hover:bg-teal-600 hover:stroke-white dark:hover:stroke-white rounded-full p-1.5">
-                                        <use class="" href="#shoping-cart"></use>
-                                    </svg>
-                                </span>
-
-                      <span>
-                                    <svg class="w-4 h-4 sm:w-6 sm:h-6 hover:child:text-emerald-500 cursor-pointer">
-                                        <use class="text-gray-400 " href="#arrows-right-left"></use>
-                                    </svg>
-                                </span>
-
-
-                    </div>
-
-                    <!-- score -->
-                    <div class="flex">
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-gray-300" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              </a>
-            {% endfor %}
-
+            class="flex gap-x-2.5 my-5 md:my-6 child:inline-block child:w-1 child:h-1 child:bg-zinc-700 dark:child:bg-gray-300 child:rounded-full">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          <!-- product2 -->
-          <!-- عنوان جدیدترین محصولات -->
-          <div class="flex justify-between items-end mt-16">
-            <div>
-              <h4 class="products-title"> جدیدترین محصولات </h4>
-              <span class="products-sub-title">برای اولین بار امتحان کن!</span>
-            </div>
-            <div class="flex items-center justify-center gap-x-3 md:gap-x-5 h-10 md:w-52 rounded-md">
-        <span
-             class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full">
-            <svg class="dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2 rotate-180">
-                <use href="#chevron-left"></use>
+
+          <p class="font-DanaRegular text-xs md:text-lg lg:text-xl ">فضای گرم و دنج ما را
+            احساس کنید،
+            جایی
+            که
+            همه می توانند قهوه معطری پیدا کنند و دسرهای خوشمزه ما را که کاملاً با قهوه داغ
+            همراه شده
+            است،
+            امتحان کنند. فضای داخلی شیک و کارکنان خوش برخورد ما روز شما را می سازد!</p>
+
+          <!-- submit btn -->
+          <a class="inline-flex items-center gap-x-2 px-4 md:px-6 py-2.5 md:py-3.5 mt-5 md:mt-6 border border-orange-300 rounded-[100px]  text-orange-300"
+            href="#">
+            <svg class="w-5 h-5 md:w-8 md:h-8">
+              <use href="#phone2"></use>
             </svg>
-        </span>
-              <span
-                   class="inline-block w-9 h-9 md:w-11 md:h-11 bg-white dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-white dark:child:hover:fill-zinc-700 rounded-full ">
-            <svg class="dark:fill-white w-9 h-9 md:w-11 md:h-11 p-1.5 md:p-2">
-                <use href="#chevron-left"></use>
-            </svg>
-        </span>
-            </div>
+            <a href="tel:09123456789">
+              <span class="font-DanaRegular text-xs md:text-sm lg:text-xl tracking-tightest">
+                ثبت سفارش تلفنی
+              </span>
+            </a>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- servises -->
+    <section>
+      <div
+        class="ser container mt-16 md:mt-28 flex items-center justify-between child:w-1/2 gap-y-11 child:lg:w-auto flex-wrap">
+
+        <!-- servise1 -->
+        <div class="S1 flex flex-col sm:flex-row items-center gap-5 sm:gap-4  ">
+          <svg class="w-[68px] h-[73px] dark:hidden">
+            <use href="#support"></use>
+          </svg>
+          <svg class="w-[68px] h-[73px] hidden dark:inline-block">
+            <use href="#supportDark"></use>
+          </svg>
+          <!-- text -->
+          <div class="flex flex-col justify-center items-center sm:items-start gap-y-2 text-zinc-700 dark:text-white">
+            <span class="font-DanaDemiBold text-sm sm:text-lg">پشتیبانی شبانه روزی</span>
+            <span class="font-DanaRegular text-xs sm:text-sm">7 روز هفته ، 24 ساعته</span>
           </div>
-
-          <!-- لیست محصولات جدید -->
-          <div
-               class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal child:transition-colors">
-            {% for product in new_products %}
-              <div>
-                <div class="flex items-center justify-center">
-                  {% if product.image %}
-                    <img src="{{ product.image.url }}" alt="">
-                  {% else %}
-                    <img class="w-32 sm:w-64 hover:scale-105 transition-transform"
-                         src="../../../static/image/products/p4.png" alt="">
-                  {% endif %}
-                </div>
-
-                <div>
-                  <h4 class="font-DanaMedium text-sm sm:text-xl mt-2 md:mt-5 text-zinc-700 dark:text-white line-clamp-2 min-h-10 sm:min-h-14 transition-colors">
-                    {{ product.name }}</h4>
-
-                  <div class="mt-1.5 md:mt-2.5 flex items-center gap-x-2.5">
-                    <div>
-                      <span
-                           class="text-base sm:text-xl font-DanaDemiBold text-teal-600 inline-block">{{ product.display_info }}</span>
-                    </div>
-
-                    {% if product.offer_info %}
-                      <div class="relative">
-                        <span
-                             class="line-offer absolute top-2.5 sm:top-3 inline-block w-14 sm:w-[70px] xl:w-[112px] border border-red-500"></span>
-                        <span
-                             class="text-base sm:text-xl font-DanaRegular text-gray-400 inline-block">{{ product.offer_info }}</span>
-                        <span
-                             class="hidden xl:inline-block sm:text-sm text-gray-400 tracking-wider">تومان</span>
-                      </div>
-                    {% endif %}
-                  </div>
-
-                  <div class="flex items-center justify-between mt-2.5 sm:mt-4">
-                    <div class="flex items-center gap-x-1 sm:gap-x-3">
-                        <span>
-                            <svg
-                                 class="w-7 h-7 sm:w-[36px] sm:h-[36px] bg-gray-100 dark:bg-zinc-800 stroke-gray-400 dark:stroke-gray-400 hover:bg-teal-600 dark:hover:bg-teal-600 hover:stroke-white dark:hover:stroke-white rounded-full p-1.5">
-                                <use href="#shoping-cart"></use>
-                            </svg>
-                        </span>
-                      <span>
-                            <svg class="w-4 h-4 sm:w-6 sm:h-6 hover:child:text-emerald-500 cursor-pointer">
-                                <use class="text-gray-400" href="#arrows-right-left"></use>
-                            </svg>
-                        </span>
-                    </div>
-
-                    <div class="flex">
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-yellow-400" href="#star-outline"></use>
-                      </svg>
-                      <svg class="w-4 h-4 sm:w-6 sm:h-6">
-                        <use class="text-gray-300" href="#star-outline"></use>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
+        </div>
+        <!-- servise2 -->
+        <div class="S2 flex flex-col sm:flex-row items-center gap-5 sm:gap-4">
+          <svg class="w-[109px] h-[73px] dark:hidden">
+            <use href="#express-delivery"></use>
+          </svg>
+          <svg class="w-[109px] h-[73px] hidden dark:inline-block">
+            <use href="#express-deliveryDark"></use>
+          </svg>
+          <!-- text -->
+          <div class="flex flex-col justify-center items-center sm:items-start gap-y-2 text-zinc-700 dark:text-white">
+            <span class="font-DanaDemiBold text-sm sm:text-lg">امکان تحویل اکسپرس</span>
+            <span class="font-DanaRegular text-xs sm:text-sm">ارسال بسته با سرعت باد</span>
           </div>
-
-          <!-- coffe clab -->
-          <div class="container">
-
-            <div
-                 class="  flex flex-col lg:flex-row  justify-between items-center gap-y-4 py-[23px] px-2.5 xs:px-[43px] mt-8 md:mt-20 rounded-2xl shadow-Normal bg-gradient-to-r from-emerald-500 to-emerald-600">
-
-              <!-- right content -->
-              <div class="flex items-center justify-center gap-x-6">
-                <img src="../static/image/club/diamond.png" alt="">
-                <div>
-                  <h4 class="font-MorabbaBold text-xl sm:text-2xl md:text-5xl text-white mb-2">کافی
-                    کلاب</h4>
-                  <span class="font-MorabbaLight text-[17px] md:text-2xl text-white ">میدونستی میتونی با امتیاز هات قهوه بگیری ؟</span>
-                </div>
-              </div>
-
-              <!-- left content -->
-              <div class="flex items-center justify-center gap-x-3 xl:gap-x-[110px]">
-
-                <!-- link item -->
-                <div class="flex items-center justify-center gap-x-2 md:gap-x-5 ">
-                  <div
-                       class="flex flex-col items-center gap-y-1.5 w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] bg-white rounded-2xl">
-
-                    <svg
-                         class="w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] px-4 md:px-[29px] mt-1.5 md:pt-5  ">
-                      <use href="#discovery"></use>
-                    </svg>
-
-                    <h5 class="font-DanaRegular text-xs md:text-sm text-emerald-600 mb-1 ">چرخ و
-                      بخت</h5>
-                  </div>
-
-                  <div
-                       class="flex flex-col items-center gap-y-1.5 w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] bg-white rounded-2xl">
-
-                    <svg
-                         class="w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] px-2 xs:px-4 md:px-[29px] mt-1.5 md:pt-5 ">
-                      <use href="#activity"></use>
-                    </svg>
-
-                    <h5 class="font-DanaRegular text-xs md:text-sm text-emerald-600 mb-1 "> ماموریت
-                      ها </h5>
-                  </div>
-
-                  <div
-                       class="flex flex-col items-center gap-y-1.5 w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] bg-white rounded-2xl">
-
-                    <svg
-                         class="w-[60px] h-[60px] xs:w-[72px] xs:h-[72px] md:w-[98px] md:h-[98px] px-4 md:px-[29px] mt-2 sm:mt-2.5 md:pt-5 ">
-                      <use href="#ticket-star"></use>
-                    </svg>
-
-                    <h5 class="font-DanaRegular text-xs md:text-sm text-emerald-600 mb-1 "> جایزه
-                      ها </h5>
-                  </div>
-                </div>
-
-                <!-- score & gift -->
-                <div class="text-white flex flex-col items-center ">
-
-                  <!-- score -->
-                  <div class="flex flex-col justify-center ">
-                    <span class=" inline-block font-DanaMedium text-2xl md:text-3xl mb-1">542</span>
-                    <span class="font-DanaRegular text-xs md:text-sm">امتیـــــــاز شما</span>
-                  </div>
-
-                  <!-- gift -->
-                  <a class="flex items-center justify-center mt-2 w-[90px] xs:w-[100px] h-[30px] md:w-28 md:h-9 rounded-[100px] bg-gradient-to-r from-orange-200 to-orange-300 "
-                     href="#">
-                    <span class="font-DanaMedium text-[10px] xs:text-xs md:text-sm">دریافت جایزه</span>
-                    <svg class=" w-5 h-5 md:w-6  md:h-6 fill-white">
-                      <use href="#chevron-left"></use>
-                    </svg>
-                  </a>
-                </div>
-
-              </div>
-
-
-            </div>
-
-            <!-- weblog -->
-            <section class="container mt-8 md:mt-20">
-
-              <!-- title weblog section -->
-              <div class="flex justify-between items-center md:items-end">
-
-                <!-- right-side-header-section -->
-                <div>
-                  <h4 class="products-title"> مطالب خواندنی</h4>
-                </div>
-
-                <!-- left-side-header-section -->
-                <div
-                     class="flex items-center justify-center  md:gap-x-1 hover:bg-orange-200/20 h-10  md:w-52 rounded-md">
-                  <a class=" text-orange-300 font-DanaRegular text-base md:text-xl tracking-tightest hidden md:block"
-                     href="#">مشاهده همه مطالب</a>
-                  <a class="link-head-products-mobile" href="#">مشاهده همه</a>
-                  <svg class="w-5 h-5 fill-orange-300">
-                    <use class="" href="#chevron-left"></use>
-                  </svg>
-                </div>
-
-              </div>
-
-              <!-- section weblog item -->
-              <div
-                   class="mt-5 md:mt-12 flex items-center justify-center  gap-2 md:gap-5 flex-wrap child:p-2.5 child:w-[448px] sm:child:w-[300px] sm:child:h-72 child:bg-white dark:child:bg-zinc-700 child:rounded-2xl child:shadow-Normal">
-
-                <!-- box1 -->
-                <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
-
-                  <!-- img div -->
-                  <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
-
-                    <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
-                         src="../../../static/image/blogs/blog-1.png" alt="">
-
-                    <!-- img hover -->
-                    <div
-                         class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
-
-                      <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
-                        <use href="#logo-type"></use>
-
-                      </svg>
-
-                    </div>
-
-                  </div>
-
-                  <!-- content box 1 -->
-                  <div
-                       class="flex flex-col sm:flex-row sm:items-center justify-around sm:justify-between gap-x-5 w-full sm:mt-4">
-                    <!-- title -->
-                    <a href="{% url 'about' %}"
-                       class="inline-block font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2"
-                       target="_blank">تاریخچه قهوه ی خوش طعم عربیکا</a>
-
-                    <!-- line between -->
-                    <span
-                         class="inline-block w-full h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10 "></span>
-
-                    <!-- date & link-btn -->
-                    <div class=" flex flex-row sm:flex-col items-center justify-between ">
-
-                      <!-- date -->
-                      <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
-                        <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
-                        <span class="font-DanaMedium text-xs sm:text-sm ">مرداد </span>
-                        <span class="font-DanaMedium text-xs sm:text-sm ">1401 </span>
-                      </div>
-
-                      <!-- link-btn -->
-                      <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
-                         href="#">
-                        <span class="font-DanaMedium text-xs">مطالعه</span>
-                        <svg class="w-3.5 h-3.5 ">
-                          <use href="#arrow-left"></use>
-                        </svg>
-                      </a>
-
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- box2 -->
-                <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
-
-                  <!-- img div -->
-                  <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
-
-                    <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
-                         src="../../../static/image/blogs/blog-2.png" alt="">
-
-                    <!-- img hover -->
-                    <div
-                         class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
-
-                      <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
-                        <use href="#logo-type"></use>
-
-                      </svg>
-
-                    </div>
-
-                  </div>
-
-                  <!-- content box 2 -->
-                  <div
-                       class="flex flex-col sm:flex-row sm:items-center justify-around sm:justify-between gap-x-5 w-full sm:mt-4">
-                    <!-- title -->
-                    <a href="pages/content-robosta.html"
-                       class="inline-block font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2"
-                       target="_blank">از طعم روبوستا خوشت میاد؟! پس اینو بخون</a>
-
-                    <!-- line between -->
-                    <span
-                         class="inline-block w-full h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10 "></span>
-
-                    <!-- date & link-btn -->
-                    <div class=" flex flex-row sm:flex-col items-center justify-between ">
-
-                      <!-- date -->
-                      <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
-                        <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
-                        <span class="font-DanaMedium text-xs sm:text-sm ">مرداد </span>
-                        <span class="font-DanaMedium text-xs sm:text-sm ">1401 </span>
-                      </div>
-
-                      <!-- link-btn -->
-                      <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
-                         href="#">
-                        <span class="font-DanaMedium text-xs">مطالعه</span>
-                        <svg class="w-3.5 h-3.5 ">
-                          <use href="#arrow-left"></use>
-                        </svg>
-                      </a>
-
-                    </div>
-                  </div>
-
-                </div>
-                <!-- box3 -->
-                <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
-
-                  <!-- img div -->
-                  <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
-
-                    <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
-                         src="../../../static/image/blogs/blog-3.png" alt="">
-
-                    <!-- img hover -->
-                    <div
-                         class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
-
-                      <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
-                        <use href="#logo-type"></use>
-
-                      </svg>
-
-                    </div>
-
-                  </div>
-
-                  <!-- content box 3 -->
-                  <div
-                       class="flex flex-col sm:flex-row sm:items-center justify-around sm:justify-between gap-x-5 w-full sm:mt-4">
-                    <!-- title -->
-                    <span
-                         class="font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2">طرز تهیه یک فنجان کافه زینو برزیلی</span>
-
-                    <!-- line between -->
-                    <span
-                         class="inline-block w-full h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10 "></span>
-
-                    <!-- date & link-btn -->
-                    <div class=" flex flex-row sm:flex-col items-center justify-between ">
-
-                      <!-- date -->
-                      <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
-                        <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
-                        <span class="font-DanaMedium text-xs sm:text-sm ">مرداد </span>
-                        <span class="font-DanaMedium text-xs sm:text-sm ">1401 </span>
-                      </div>
-
-                      <!-- link-btn -->
-                      <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
-                         href="#">
-                        <span class="font-DanaMedium text-xs">مطالعه</span>
-                        <svg class="w-3.5 h-3.5 ">
-                          <use href="#arrow-left"></use>
-                        </svg>
-                      </a>
-
-                    </div>
-                  </div>
-
-                </div>
-                <!-- box4 -->
-                <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
-
-                  <!-- img div -->
-                  <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
-
-                    <img class=" w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover"
-                         src="../../../static/image/blogs/blog-4.png" alt="">
-
-                    <!-- img hover -->
-                    <div
-                         class=" absolute  inset-0  flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80  h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
-
-                      <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
-                        <use href="#logo-type"></use>
-
-                      </svg>
-
-                    </div>
-
-                  </div>
-
-                  <!-- content box 4 -->
-                  <div
-                       class="flex flex-col sm:flex-row sm:items-center justify-between gap-x-0 w-full sm:mt-4 border-red-500">
-                    <!-- title -->
-                    <span
-                         class="font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2 w-auto">
-        طرز تهیه قهوه دالگونا مناسب روز‌های کرونایی
-    </span>
-
-                    <!-- line between -->
-                    <span
-                         class="inline-block w-auto h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10"></span>
-
-                    <!-- date & link-btn -->
-                    <div class="flex flex-row sm:flex-col items-center justify-between">
-                      <!-- date -->
-                      <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
-                        <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
-                        <span class="font-DanaMedium text-xs sm:text-sm">مرداد</span>
-                        <span class="font-DanaMedium text-xs sm:text-sm">1401</span>
-                      </div>
-
-                      <!-- link-btn -->
-                      <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300"
-                         href="#">
-                        <span class="font-DanaMedium text-xs">مطالعه</span>
-                        <svg class="w-3.5 h-3.5">
-                          <use href="#arrow-left"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </section>
-
-            <!-- contact us -->
-            <section>
-              <div class="container mt-7 md:mt-28 flex flex-col items-start sm:flex-row gap-5">
-
-                <!-- right side image -->
-                <div class="flex justify-center w-full sm:w-[300px]">
-                  <img class=" shrink-0 w-[298px]" src="../static/image/contact.png" alt="">
-                </div>
-
-                <!-- left side content -->
-                <div class="text-zinc-700 dark:text-white">
-                  <h3 class="font-MorabbaMedium text-2xl md:text-3xl lg:text-5xl mb-0.5 md:mb-1.5">یکی
-                    از
-                    بهترین
-                    قهوه
-                    ها !</h3>
-                  <span
-                       class="font-MorabbaLight text-base md:text-lg lg:text-3xl">کیفیت قهوه را از ما بخواهید ...</span>
-
-                  <!-- circles -->
-                  <div
-                       class="flex gap-x-2.5 my-5 md:my-6 child:inline-block child:w-1 child:h-1 child:bg-zinc-700 dark:child:bg-gray-300 child:rounded-full">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-
-                  <p class="font-DanaRegular text-xs md:text-lg lg:text-xl ">فضای گرم و دنج ما را
-                    احساس کنید،
-                    جایی
-                    که
-                    همه می توانند قهوه معطری پیدا کنند و دسرهای خوشمزه ما را که کاملاً با قهوه داغ
-                    همراه شده
-                    است،
-                    امتحان کنند. فضای داخلی شیک و کارکنان خوش برخورد ما روز شما را می سازد!</p>
-
-                  <!-- submit btn -->
-                  <a class="inline-flex items-center gap-x-2 px-4 md:px-6 py-2.5 md:py-3.5 mt-5 md:mt-6 border border-orange-300 rounded-[100px]  text-orange-300"
-                     href="#">
-                    <svg class="w-5 h-5 md:w-8 md:h-8">
-                      <use href="#phone2"></use>
-                    </svg>
-                    <a href="tel:09123456789">
-                      <span class="font-DanaRegular text-xs md:text-sm lg:text-xl tracking-tightest">
-                          ثبت سفارش تلفنی
-                      </span>
-                    </a>
-                  </a>
-                </div>
-              </div>
-            </section>
-            <!-- servises -->
-            <section>
-              <div
-                   class="ser container mt-16 md:mt-28 flex items-center justify-between child:w-1/2 gap-y-11 child:lg:w-auto flex-wrap">
-
-                <!-- servise1 -->
-                <div class="S1 flex flex-col sm:flex-row items-center gap-5 sm:gap-4  ">
-                  <svg class="w-[68px] h-[73px] dark:hidden">
-                    <use href="#support"></use>
-                  </svg>
-                  <svg class="w-[68px] h-[73px] hidden dark:inline-block">
-                    <use href="#supportDark"></use>
-                  </svg>
-                  <!-- text -->
-                  <div
-                       class="flex flex-col justify-center items-center sm:items-start gap-y-2 text-zinc-700 dark:text-white">
-                    <span class="font-DanaDemiBold text-sm sm:text-lg">پشتیبانی شبانه روزی</span>
-                    <span class="font-DanaRegular text-xs sm:text-sm">7 روز هفته ، 24 ساعته</span>
-                  </div>
-                </div>
-                <!-- servise2 -->
-                <div class="S2 flex flex-col sm:flex-row items-center gap-5 sm:gap-4">
-                  <svg class="w-[109px] h-[73px] dark:hidden">
-                    <use href="#express-delivery"></use>
-                  </svg>
-                  <svg class="w-[109px] h-[73px] hidden dark:inline-block">
-                    <use href="#express-deliveryDark"></use>
-                  </svg>
-                  <!-- text -->
-                  <div
-                       class="flex flex-col justify-center items-center sm:items-start gap-y-2 text-zinc-700 dark:text-white">
-                    <span class="font-DanaDemiBold text-sm sm:text-lg">امکان تحویل اکسپرس</span>
-                    <span class="font-DanaRegular text-xs sm:text-sm">ارسال بسته با سرعت باد</span>
-                  </div>
-                </div>
-                <!-- servise3 -->
-                <div class="S3 flex flex-col sm:flex-row items-center gap-5 sm:gap-4">
-                  <svg class="w-[76px] h-[73px] pl-3 sm:pl-[18px] dark:hidden">
-                    <use href="#coffee"></use>
-                  </svg>
-                  <svg class="w-[76px] h-[73px] pl-3 sm:pl-[18px] hidden dark:inline-block">
-                    <use href="#coffeeDark"></use>
-                  </svg>
-                  <!-- text -->
-                  <div
-                       class="flex flex-col justify-center items-center  sm:items-start gap-y-2 text-zinc-700 dark:text-white">
-                    <span class="font-DanaDemiBold text-sm sm:text-lg">رست تخصصی</span>
-                    <span class="font-DanaRegular text-xs sm:text-sm">تازه برشته شده و با کیفیت</span>
-                  </div>
-                </div>
-                <!-- servise4 -->
-                <div class="S4 flex flex-col sm:flex-row items-center gap-5 sm:gap-4">
-                  <svg class="w-[66px] h-[73px] dark:hidden">
-                    <use href="#pitcher"></use>
-                  </svg>
-                  <svg class="w-[66px] h-[73px] hidden dark:inline-block">
-                    <use href="#pitcherDark"></use>
-                  </svg>
-                  <!-- text -->
-                  <div
-                       class="flex flex-col justify-center items-center sm:items-start gap-y-2 text-zinc-700 dark:text-white">
-                    <span class="font-DanaDemiBold text-sm sm:text-lg">اکسسوری قهوه</span>
-                    <span class="font-DanaRegular text-xs sm:text-sm">وسایل و ادوات دم آوری</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-
-  </main>
+        </div>
+        <!-- servise3 -->
+        <div class="S3 flex flex-col sm:flex-row items-center gap-5 sm:gap-4">
+          <svg class="w-[76px] h-[73px] pl-3 sm:pl-[18px] dark:hidden">
+            <use href="#coffee"></use>
+          </svg>
+          <svg class="w-[76px] h-[73px] pl-3 sm:pl-[18px] hidden dark:inline-block">
+            <use href="#coffeeDark"></use>
+          </svg>
+          <!-- text -->
+          <div class="flex flex-col justify-center items-center  sm:items-start gap-y-2 text-zinc-700 dark:text-white">
+            <span class="font-DanaDemiBold text-sm sm:text-lg">رست تخصصی</span>
+            <span class="font-DanaRegular text-xs sm:text-sm">تازه برشته شده و با کیفیت</span>
+          </div>
+        </div>
+        <!-- servise4 -->
+        <div class="S4 flex flex-col sm:flex-row items-center gap-5 sm:gap-4">
+          <svg class="w-[66px] h-[73px] dark:hidden">
+            <use href="#pitcher"></use>
+          </svg>
+          <svg class="w-[66px] h-[73px] hidden dark:inline-block">
+            <use href="#pitcherDark"></use>
+          </svg>
+          <!-- text -->
+          <div class="flex flex-col justify-center items-center sm:items-start gap-y-2 text-zinc-700 dark:text-white">
+            <span class="font-DanaDemiBold text-sm sm:text-lg">اکسسوری قهوه</span>
+            <span class="font-DanaRegular text-xs sm:text-sm">وسایل و ادوات دم آوری</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+</main>
 {% endblock %}

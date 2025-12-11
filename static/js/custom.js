@@ -90,39 +90,11 @@ function addProductToOrder(productId) {
     );
 }
 
-// script page shop_cafe سبد خرید
-
-// function changeQty(id, delta, pricePerItem) {
-//     const qtyEl = document.getElementById("qty-" + id);
-//     let qty = parseInt(qtyEl.innerText);
-
-//     qty += delta;
-//     if (qty < 1) qty = 1;
-
-//     qtyEl.innerText = qty;
-
-//     // قیمت کل این محصول
-//     const itemTotal = qty * pricePerItem;
-//     document.getElementById("price-" + id).innerText = itemTotal.toLocaleString() + "ریال";
-
-//     updateBasketTotal();
-// }
-
-// function updateBasketTotal() {
-//     let total = 0;
-
-//     document.querySelectorAll("[id^='price-']").forEach((el) => {
-//         let num = parseInt(el.innerText.replace(/[^0-9]/g, ""));
-//         total += num;
-//     });
-
-//     document.getElementById("total-basket").innerText = total.toLocaleString();
-// }
 
 
 // تابع کمکی برای فرمت کردن قیمت به ریال
 function formatCurrency(value) {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ریال";
+    return " ریال" + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 async function changeQty(id, delta, updateUrl) {
@@ -163,7 +135,6 @@ async function changeQty(id, delta, updateUrl) {
     }
 }
 
-// تابع اصلاح شده updateBasketTotal
 function updateBasketTotal() {
     let total = 0;
     
