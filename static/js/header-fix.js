@@ -34,8 +34,44 @@
 
 
 
+// document.addEventListener('DOMContentLoaded', function () {
+//   if (window.location.pathname === "/") return;
+
+//   const header = document.querySelector('header');
+//   if (!header) return;
+
+//   const adjustSpacing = () => {
+//     const rect = header.getBoundingClientRect();
+//     const headerHeight = Math.ceil(rect.height + rect.top);
+
+//     const finalHeight = Math.max(0, headerHeight - 10); // مقدار فاصله کمتر شد
+
+//     let spacer = document.querySelector('#header-spacer');
+//     if (!spacer) {
+//       spacer = document.createElement('div');
+//       spacer.id = 'header-spacer';
+//       spacer.className = 'hidden md:block';
+//       header.insertAdjacentElement('afterend', spacer);
+//     }
+//     spacer.style.height = finalHeight + 'px';
+
+//     const main = document.querySelector('main') || document.body;
+//     if (window.innerWidth >= 768) {
+//       main.style.paddingTop = finalHeight + 'px';
+//     } else {
+//       main.style.paddingTop = '';
+//     }
+//   };
+
+//   adjustSpacing();
+//   window.addEventListener('resize', adjustSpacing);
+// });
+
 document.addEventListener('DOMContentLoaded', function () {
-  if (window.location.pathname === "/") return;
+
+  // فقط صفحه جزئیات محصول
+  const productDetailPage = document.querySelector('main.product_detail');
+  if (!productDetailPage) return;
 
   const header = document.querySelector('header');
   if (!header) return;
@@ -43,8 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const adjustSpacing = () => {
     const rect = header.getBoundingClientRect();
     const headerHeight = Math.ceil(rect.height + rect.top);
-
-    const finalHeight = Math.max(0, headerHeight - 20); // مقدار فاصله کمتر شد
+    const finalHeight = Math.max(0, headerHeight - 100);
 
     let spacer = document.querySelector('#header-spacer');
     if (!spacer) {
@@ -53,13 +88,13 @@ document.addEventListener('DOMContentLoaded', function () {
       spacer.className = 'hidden md:block';
       header.insertAdjacentElement('afterend', spacer);
     }
+
     spacer.style.height = finalHeight + 'px';
 
-    const main = document.querySelector('main') || document.body;
     if (window.innerWidth >= 768) {
-      main.style.paddingTop = finalHeight + 'px';
+      productDetailPage.style.paddingTop = finalHeight + 'px';
     } else {
-      main.style.paddingTop = '';
+      productDetailPage.style.paddingTop = '';
     }
   };
 
