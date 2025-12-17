@@ -7,10 +7,23 @@ from account_module.models import User
 
 class FooterLinkBox2(models.Model):
     title = models.CharField(max_length=100, verbose_name='عنوان')
+    slug = models.SlugField(max_length=100, blank=True, unique=True)
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='children', verbose_name='والد محصول')
     class Meta:
         verbose_name = 'دسته بندی محصولات'
         verbose_name_plural = 'دسته بندی های محصولات'
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title, allow_unicode=True)
+            slug = base_slug
+            counter = 1
+            while FooterLinkBox2.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
+        
     def __str__(self):
         return self.title
 
@@ -23,7 +36,7 @@ class Product(models.Model):
     discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     short_description = models.CharField(max_length=360, db_index=True, null=True, verbose_name='توضیحات کوتاه')
     description = models.TextField(verbose_name='توضیحات اصلی', db_index=True)
-    slug = models.SlugField(default="", null=False, db_index=True, blank=True, max_length=200, unique=True,
+    slug = models.SlugField(default="", null=False, db_index=True, blank=True, max_length=200,unique=True,
                             verbose_name='عنوان در url')
     is_active = models.BooleanField(default=True,verbose_name='فعال / غیرفعال')
     is_delete = models.BooleanField(default=True,verbose_name='حذف شده / نشده')

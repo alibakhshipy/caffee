@@ -3,13 +3,13 @@
     <!-- img product -->
     <div class=" flex items-center justify-center relative">
         {% if product.image %}
-            <img src="{{ product.image.url }}" alt="">
+            <img src="{{ product.image.url }}" alt="{% url 'product_detail' product.slug %}">
         {% else %}
             <img class="w-32 sm:w-64 hover:scale-105 transition-transform" src="../../../static/image/products/p1.png"
                  alt="">
         {% endif %}
         <span
-                class="absolute top-0 right-0 inline-block py-0.5 px-2.5 xs:py-1 xs:px-3.5 bg-orange-300 text-white dark:text-zinc-700 font-DanaMedium text-base rounded-[100px]">12%</span>
+                class="absolute top-0 right-0 inline-block py-0.5 px-2.5 xs:py-1 xs:px-3.5 bg-orange-300 text-white dark:text-zinc-700 font-DanaMedium text-base rounded-[100px]">تخفیف</span>
     </div>
 
     <!-- content product -->
@@ -22,7 +22,7 @@
 
 
         <!-- wrapper price -->
-        <div class="mt-1.5 md:mt-2.5 flex items-center gap-x-2.5">
+        <div class="mt-1.5 md:mt-2.5 flex flex-col items-center gap-x-2.5">
             <div>
                 <span class="text-base sm:text-xl font-DanaDemiBold text-teal-600 inline-block">{{ product.display_info }}</span>
             </div>
@@ -32,7 +32,6 @@
                 <div class="relative">
                     <span class="line-offer absolute top-2.5 sm:top-3 inline-block w-14 sm:w-[70px] xl:w-[112px] border border-red-500"></span>
                     <span class="text-base sm:text-xl font-DanaRegular text-gray-400 inline-block">{{ product.offer_info }}</span>
-                    <span class="hidden xl:inline-block sm:text-sm text-gray-400 tracking-wider">تومان</span>
                 </div>
             {% endif %}
         </div>

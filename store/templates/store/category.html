@@ -1,0 +1,50 @@
+{% extends '_layout.html' %}
+{% block content %}
+
+    <section>
+        <div class="products-img flex">
+
+            <div class="container mt-8 md:mt-48">
+                
+                <!-- Header -->
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h4 class="products-title">{{ category.title }}</h4>
+                        <span class="products-sub-title">محصولات این دسته‌بندی</span>
+                    </div>
+                </div>
+
+                <!-- زیردسته‌ها (اگر وجود داشته باشند) -->
+                {% if children %}
+                <div class="mt-6 mb-8">
+                    <h3 class="text-lg font-bold mb-4">زیردسته‌ها</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for child in children %}
+                        <a href="{% url 'category' child.slug %}" 
+                        class="bg-gray-100 hover:bg-orange-100 px-4 py-2 rounded-lg">
+                            {{ child.title }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Products -->
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal  child:transition-colors">
+                    {% for product in products %}
+                        <a href="{% url 'product_detail' product.slug %}">
+                            {% include 'include/store_models.html' with product=product %}
+                        </a>
+                    {% empty %}
+                        <div class="col-span-full text-center py-12">
+                            <p class="text-gray-500">هنوز محصولی در این دسته‌بندی وجود ندارد.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>    
+    </section>
+
+{% endblock %}
