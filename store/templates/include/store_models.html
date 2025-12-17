@@ -3,7 +3,7 @@
     <!-- img product -->
     <div class=" flex items-center justify-center relative">
         {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{% url 'product_detail' product.slug %}">
+            <img src="{{ product.image.url }}" alt="">
         {% else %}
             <img class="w-32 sm:w-64 hover:scale-105 transition-transform" src="../../../static/image/products/p1.png"
                  alt="">
