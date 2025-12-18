@@ -7,7 +7,7 @@
       <!-- img -->
       <div>
         {% if product.image %}
-          <img src="{{ object.image.url }}" alt="" />
+          <img src="{{ object.image.url }}" alt="" style="max-width: 100%; height: auto; max-height: 300px;"/>
         {% else %}
           <img src="/static/image/biroonbar/Coffee-Cup-MockUp 1 (1).svg" alt="" />
         {% endif %}
