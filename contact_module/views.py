@@ -8,4 +8,4 @@ from django.urls import reverse_lazy
 class ContactUsView(CreateView):
     form_class = ContactUsModelForm
     template_name = 'contact_module/contact.html'
-    success_url = reverse_lazy('contact_modules')
+    success_url = reverse_lazy('home')

@@ -68,6 +68,7 @@ gunicorn
 # install None docker-compose-stage
 Tailwind
 django-tailwind
+django-money
 
 
 # install node.js and tailwind

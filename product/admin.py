@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, FooterLinkBox2, ProductVisit, ProductVariant, ProductGr
+from .models import Product, FooterLinkBox2, ProductAboutCaffe, ProductVisit, ProductVariant, ProductGr
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name','is_featured', 'is_new', 'author']
@@ -26,3 +26,4 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductVisit)
 admin.site.register(ProductVariant)
 admin.site.register(ProductGr)
+admin.site.register(ProductAboutCaffe)

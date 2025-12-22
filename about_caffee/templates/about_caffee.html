@@ -1,59 +1,96 @@
 {% extends '_layout.html' %}
 
-{% comment %} {% block title %}صفحه بلاگ{% endblock title %} {% endcomment %}
+{% comment %} {% block title %}
+  صفحه بلاگ
+{% endblock %} {% endcomment %}
 
 {% block content %}
-<section>
-
+  <section>
     <!-- background section -->
     <div class="products-img flex">
+      <!-- header section -->
+      <div class="container mt-8 md:mt-48">
+        <!-- title header section -->
+        <div class="flex justify-between items-end">
+          <!-- right-side-header-section -->
+          <div>
+            <h4 class="products-title">آکادمی قهوه ریس</h4>
+            <span class="products-sub-title">بلاگ های کافی</span>
+          </div>
 
-        <!-- header section -->
-        <div class="container mt-8 md:mt-48">
-
-            <!-- title header section -->
-            <div class="flex justify-between items-end">
-
-                <!-- right-side-header-section -->
-                <div>
-                    <h4 class="products-title">آکادمی قهوه ریس</h4>
-                    <span class="products-sub-title">بلاگ های کافی</span>
-                </div>
-
-                <!-- left-side-header-section -->
-                <div class="flex items-center justify-center md:gap-x-1 hover:bg-orange-200/20 h-10 md:w-52 rounded-md">
-                    <a class="link-head-products" href="{% url 'blog:blog_list' %}">مشاهده همه بلاگ ها</a>
-                    <a class="link-head-products-mobile" href="{% url 'blog:blog_list' %}">مشاهده همه</a>
-                    <svg class="w-5 h-5 fill-orange-300">
-                        <use href="#chevron-left"></use>
-                    </svg>
-                </div>
-
-            </div>
-
-            <!-- posts grid -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal child:transition-colors">
-
-                {% for post in posts %}
-                <div class="group">
-                    <a href="{% url 'blog:blog_detail' slug=post.slug %}" class="block">
-                        {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-40 object-cover rounded-xl mb-2">
-                        {% endif %}
-                        <h5 class="font-semibold text-lg group-hover:text-orange-400 transition-colors">{{ post.title }}</h5>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ post.short_description|truncatewords:20 }}</p>
-                    </a>
-                </div>
-                {% empty %}
-                    <p>هیچ مطلبی هنوز منتشر نشده است.</p>
-                {% endfor %}
-
-            </div>
-
+          <!-- left-side-header-section -->
+          <div class="flex items-center justify-center md:gap-x-1 hover:bg-orange-200/20 h-10 md:w-52 rounded-md">
+            <a class="link-head-products" href="{% url 'blog:blog_list' %}">مشاهده همه بلاگ ها</a>
+            <a class="link-head-products-mobile" href="{% url 'blog:blog_list' %}">مشاهده همه</a>
+            <svg class="w-5 h-5 fill-orange-300">
+              <use href="#chevron-left"></use>
+            </svg>
+          </div>
         </div>
+
+        <!-- posts grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12 child:md:p-5 child:p-2 child:bg-white dark:child:bg-zinc-700 gap-3.5 md:gap-5 child:rounded-2xl child:shadow-Normal child:transition-colors">
+          {% for post in posts %}
+            {% comment %} <div class="group">
+              <a href="{% url 'blog:blog_detail' slug=post.slug %}" class="block">
+                {% if post.image %}
+                  <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-40 object-cover rounded-xl mb-2" />
+                {% endif %}
+                <h5 class="font-semibold text-lg group-hover:text-orange-400 transition-colors">{{ post.title }}</h5>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ post.short_description|truncatewords:20 }}</p>
+              </a>
+            </div> {% endcomment %}
+
+            <!-- section weblog item -->
+            <div class="mt-5 md:mt-12 flex items-center justify-center gap-2 md:gap-5 flex-wrap child:p-2.5 child:w-[448px] sm:child:w-[300px] sm:child:h-72 child:bg-white dark:child:bg-zinc-700 child:rounded-2xl child:shadow-Normal">
+              <!-- box1 -->
+              <div class="flex sm:flex-col flex-row gap-2.5 sm:gap-0 group">
+                <!-- img div -->
+                <div class="relative rounded-2xl rounded-bl-4xl overflow-hidden">
+                  {% if post.image %}
+                    <img class="w-[253px] h-[130px] sm:w-[280px] sm:h-[186px] object-cover" src="{{ post.image.url }}" alt="{{ post.title }}" />
+                  {% endif %}
+                  <!-- img hover -->
+                  <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-orange-200/80 to-orange-300/80 h-[130px] sm:w-[280px] sm:h-[186px] invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all">
+                    <svg class="w-[84px] h-[33px] sm:w-[138px] sm:h-[52px] fill-amber-900">
+                      <use href="#logo-type"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- content box 1 -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-around sm:justify-between gap-x-5 w-full sm:mt-4">
+                  <!-- title -->
+                  <a href="{% url 'blog:blog_detail' slug=post.slug %}" class="inline-block font-DanaMedium sm:font-DanaRegular text-base sm:text-lg text-zinc-700 dark:text-white md:w-[204px] line-clamp-2" target="_blank">{{ post.title }}</a>
+                    
+                  <!-- line between -->
+                  <span class="inline-block w-full h-[1px] sm:w-[1px] sm:h-[61px] bg-gray-100 dark:bg-white/10"></span>
+
+                  <!-- date & link-btn -->
+                  <div class="flex flex-row sm:flex-col items-center justify-between">
+                    <!-- date -->
+                    <div class="text-teal-600 flex flex-row sm:flex-col items-center gap-x-1">
+                      <span class="font-DanaDemiBold text-xs sm:text-2xl">21</span>
+                      <span class="font-DanaMedium text-xs sm:text-sm">مرداد</span>
+                      <span class="font-DanaMedium text-xs sm:text-sm">1401</span>
+                    </div>
+
+                    <!-- link-btn -->
+                    <a class="sm:hidden flex items-center justify-center gap-1 bg-orange-200/20 px-2.5 py-0.5 rounded-md text-orange-300" href="#">
+                      <span class="font-DanaMedium text-xs">مطالعه</span>
+                      <svg class="w-3.5 h-3.5">
+                        <use href="#arrow-left"></use>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p>هیچ مطلبی هنوز منتشر نشده است.</p>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-
-</section>
-{% endblock content %}
-
-     
+  </section>
+{% endblock %}

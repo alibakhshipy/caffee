@@ -111,3 +111,16 @@ class ProductVariant(models.Model):
         
     def __str__(self):
         return f'{self.product.name} - {self.title}'
+    
+
+class ProductAboutCaffe(models.Model):
+    title = models.CharField(max_length=50, verbose_name='تیتر مطلب')
+    publish_data = models.DateField(auto_now_add=True, verbose_name='تاریخ انتشار')
+    image = models.ImageField(upload_to='images/product', blank=True, null=True)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'مطالب خواندنی'
+        verbose_name_plural = 'مطالب های خواندنی'
