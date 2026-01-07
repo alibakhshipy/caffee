@@ -1,9 +1,11 @@
 from django.db.models import Count
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from product.models import Product, FooterLinkBox2
 from site_module.models import Site_setting, FooterLinkBox
 from utils.conventors import group_list
+
 
 class Index_pageView(TemplateView):
     template_name = 'cafee_new/index_page.html'

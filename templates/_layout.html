@@ -3,32 +3,44 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}{% endblock %}
+    {% include 'header_references.html' %}
     
-   {% include 'header_references.html' %}
-    
-   
+    <style>
+        :root {
+            --header-height: 150px;
+        }
+        
+        .main-content {
+            margin-top: calc(var(--header-height) + 80px);
+            min-height: calc(100vh - 200px);
+        }
+        
+        @media (min-width: 768px) {
+            :root {
+                --header-height: 160px;
+            }
+        }
+    </style>
 </head>
-{% load static %}
-<body class="bg-gray-100 xl:bg-gray-300 dark:bg-zinc-900 font-DanaRegular ">
+<body class="bg-gray-100 xl:bg-gray-300 dark:bg-zinc-900 font-DanaRegular">
     {% include 'body_svg.html' %}
     
-<!--header body -->    
-{% render_partial 'product.views.site_header_partial' %}
-<script src="{% static 'js/header-fix.js' %}"></script>
-
-
-<!-- main -->
-{% block content %}{% endblock %}
+    <!-- هدر -->
+    {% render_partial 'product.views.site_header_partial' %}
     
-
-{% render_partial 'product.views.site_footer_partial' %}
-
-{% include 'footer_references.html' %}
-
+    <!-- محتوای اصلی -->
+    <div id="content-wrapper">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- فوتر -->
+    {% render_partial 'product.views.site_footer_partial' %}
+    {% include 'footer_references.html' %}
+    
+    <!-- این خط را کاملاً پاک کنید -->
+    <!-- <script src="{% static 'js/header-fix.js' %}"></script> -->
 </body>
-
 </html>

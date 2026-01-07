@@ -3484,3 +3484,32 @@ input::placeholder {
 .swal2-cancel {
     background-color: #d33 !important;
 }
+
+/* در فایل static/css/style.css این خطوط را اضافه کنید */
+main.product_detail {
+  margin-top: var(--header-height, 80px);
+}
+
+@media (min-width: 768px) {
+  main.product_detail {
+    margin-top: var(--header-height, 120px);
+  }
+}
+
+/* برای تضمین نمایش صحیح */
+main.product_detail {
+    min-height: calc(100vh - 200px);
+    transition: margin-top 0.3s ease;
+}
+
+/* برای موبایل */
+@media (max-width: 768px) {
+    main.product_detail {
+        padding: 0 15px;
+    }
+}
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+}
